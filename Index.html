@@ -1,0 +1,365 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Portfolio — Tom Bourricant</title>
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --bg: #0e0f14;
+      --bg2: #13141b;
+      --surface: #1a1b24;
+      --border: #252633;
+      --yellow: #f5c842;
+      --yellow-dim: rgba(245,200,66,.12);
+      --yellow-border: rgba(245,200,66,.3);
+      --text: #e8e9f0;
+      --muted: #6b6d80;
+      --muted2: #4a4c5e;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: 'DM Sans', sans-serif;
+      font-weight: 300;
+      min-height: 100vh;
+      overflow-x: hidden;
+    }
+
+    /* ── BRUIT DE FOND ── */
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");
+      background-size: 200px 200px;
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    /* ── HALO GLOW ── */
+    .glow {
+      position: fixed;
+      width: 700px;
+      height: 700px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(245,200,66,.07) 0%, transparent 70%);
+      top: -200px;
+      right: -150px;
+      pointer-events: none;
+      z-index: 0;
+      animation: haloPulse 6s ease-in-out infinite;
+    }
+    @keyframes haloPulse {
+      0%, 100% { opacity: 1; transform: scale(1); }
+      50% { opacity: .6; transform: scale(1.1); }
+    }
+
+    /* ── NAV ── */
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 20px 60px;
+      background: rgba(14,15,20,.85);
+      backdrop-filter: blur(20px);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .nav-logo {
+      font-family: 'Syne', sans-serif;
+      font-weight: 800;
+      font-size: 1.1rem;
+      letter-spacing: -.02em;
+      color: var(--text);
+      text-decoration: none;
+    }
+    .nav-logo span { color: var(--yellow); }
+
+
+
+    /* ── HERO ── */
+    .hero {
+      position: relative;
+      z-index: 1;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 120px 40px 80px;
+    }
+
+    .hero-tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-family: 'Syne', sans-serif;
+      font-size: .72rem;
+      font-weight: 700;
+      letter-spacing: .22em;
+      text-transform: uppercase;
+      color: var(--yellow);
+      background: var(--yellow-dim);
+      border: 1px solid var(--yellow-border);
+      padding: 7px 18px;
+      border-radius: 30px;
+      margin-bottom: 36px;
+      animation: fadeDown .7s both;
+    }
+
+    .hero h1 {
+      font-family: 'Syne', sans-serif;
+      font-size: clamp(3.5rem, 9vw, 7rem);
+      font-weight: 800;
+      line-height: 1.0;
+      letter-spacing: -.04em;
+      margin-bottom: 28px;
+      animation: fadeDown .7s .08s both;
+    }
+    .hero h1 .gold { color: var(--yellow); }
+    .hero h1 .line2 {
+      display: block;
+      color: var(--muted);
+      font-size: clamp(2rem, 5vw, 4rem);
+      font-weight: 700;
+      margin-top: 8px;
+    }
+
+    .hero-sub {
+      max-width: 520px;
+      font-size: 1rem;
+      color: var(--muted);
+      line-height: 1.8;
+      margin-bottom: 52px;
+      animation: fadeDown .7s .16s both;
+    }
+    .hero-sub strong { color: var(--text); font-weight: 500; }
+
+    /* CTA CARDS */
+    .cta-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 220px);
+      gap: 14px;
+      animation: fadeDown .7s .24s both;
+    }
+
+    .cta-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 22px 20px;
+      text-decoration: none;
+      color: var(--text);
+      text-align: left;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      transition: border-color .2s, transform .25s, background .2s;
+      position: relative;
+      overflow: hidden;
+    }
+    .cta-card::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: var(--yellow-dim);
+      opacity: 0;
+      transition: opacity .2s;
+    }
+    .cta-card:hover {
+      border-color: var(--yellow-border);
+      transform: translateY(-4px);
+    }
+    .cta-card:hover::before { opacity: 1; }
+
+    .cta-card .c-ico {
+      font-size: 1.6rem;
+      position: relative;
+      z-index: 1;
+    }
+    .cta-card .c-title {
+      font-family: 'Syne', sans-serif;
+      font-size: .88rem;
+      font-weight: 700;
+      position: relative;
+      z-index: 1;
+      color: var(--text);
+    }
+    .cta-card .c-sub {
+      font-size: .75rem;
+      color: var(--muted);
+      line-height: 1.5;
+      position: relative;
+      z-index: 1;
+    }
+    .cta-card.primary {
+      background: var(--yellow);
+      border-color: var(--yellow);
+      grid-column: span 2;
+      flex-direction: row;
+      align-items: center;
+      justify-content: space-between;
+      padding: 20px 24px;
+    }
+    .cta-card.primary:hover { transform: translateY(-4px); background: #f7d056; border-color: #f7d056; }
+    .cta-card.primary::before { display: none; }
+    .cta-card.primary .c-title { color: #0e0f14; font-size: 1rem; }
+    .cta-card.primary .c-sub { color: rgba(14,15,20,.6); }
+    .cta-card.primary .c-arrow { font-size: 1.3rem; }
+
+    /* ── SECTION STATS ── */
+    .stats {
+      position: relative;
+      z-index: 1;
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 0 40px 100px;
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+    }
+
+    .stat-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      padding: 32px 28px;
+      text-align: center;
+      animation: fadeUp .6s both;
+    }
+    .stat-card:nth-child(2) { animation-delay: .1s; }
+    .stat-card:nth-child(3) { animation-delay: .2s; }
+
+    .stat-num {
+      font-family: 'Syne', sans-serif;
+      font-size: 2.8rem;
+      font-weight: 800;
+      color: var(--yellow);
+      letter-spacing: -.04em;
+      line-height: 1;
+      margin-bottom: 8px;
+    }
+    .stat-lbl {
+      font-size: .82rem;
+      color: var(--muted);
+      line-height: 1.5;
+    }
+
+    @keyframes fadeDown {
+      from { opacity: 0; transform: translateY(-18px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(20px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    /* ── FOOTER ── */
+    footer {
+      position: relative;
+      z-index: 1;
+      text-align: center;
+      padding: 28px;
+      font-size: .78rem;
+      color: var(--muted2);
+      border-top: 1px solid var(--border);
+    }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 640px) {
+      nav { padding: 16px 20px; }
+      .cta-grid { grid-template-columns: 1fr; }
+      .cta-card.primary { grid-column: span 1; }
+      .stats { grid-template-columns: 1fr; padding: 0 20px 80px; }
+    }
+  </style>
+</head>
+<body>
+
+<div class="glow"></div>
+
+<!-- ── NAVIGATION ── -->
+<nav>
+  <a class="nav-logo" href="#">Tom <span>BOURRICANT</span></a>
+
+</nav>
+
+<!-- ── HERO ── -->
+<section class="hero">
+  <div class="hero-tag">✦ Portfolio · 2025–2027</div>
+
+  <h1>
+    Tom <span class="gold">Bourricant</span>
+    <span class="line2">Étudiant BTS SIO SISR</span>
+  </h1>
+
+  <p class="hero-sub">
+    Passionné par les <strong>réseaux</strong>, les <strong>systèmes</strong> et la <strong>cybersécurité</strong> — en formation au Lycée Albert Londres, Cusset.
+  </p>
+
+  <div class="cta-grid">
+    <a class="cta-card primary" href="Identité.html">
+      <div>
+        <div class="c-title">Découvrir mon profil</div>
+        <div class="c-sub">Identité, objectifs, CV</div>
+      </div>
+      <span class="c-arrow">→</span>
+    </a>
+
+    <a class="cta-card" href="Ma_Formation.html">
+      <span class="c-ico">🎓</span>
+      <div class="c-title">Ma Formation</div>
+      <div class="c-sub">BTS SIO SISR</div>
+    </a>
+
+    <a class="cta-card" href="Expériences_Professionnelles.html">
+      <span class="c-ico">💼</span>
+      <div class="c-title">Expériences</div>
+      <div class="c-sub">Stages & pro</div>
+    </a>
+
+    <a class="cta-card" href="Projets.html">
+      <span class="c-ico">🚀</span>
+      <div class="c-title">Projets</div>
+      <div class="c-sub">Réalisations</div>
+    </a>
+
+    <a class="cta-card" href="/cdn-cgi/l/email-protection#f682999b94998384849f95979882b6919b979f9ad895999b">
+      <span class="c-ico">📧</span>
+      <div class="c-title">Me contacter</div>
+      <div class="c-sub"><span class="__cf_email__" data-cfemail="fa8e959798958f888893999b948eba9d979b9396d4999597">[email&#160;protected]</span></div>
+    </a>
+  </div>
+</section>
+
+<!-- ── STATS ── -->
+<div class="stats">
+  <div class="stat-card">
+    <div class="stat-num">2</div>
+    <div class="stat-lbl">Années de formation<br>BTS SIO SISR</div>
+  </div>
+  <div class="stat-card">
+    <div class="stat-num">4</div>
+    <div class="stat-lbl">Sections du portfolio<br>à explorer</div>
+  </div>
+  <div class="stat-card">
+    <div class="stat-num">∞</div>
+    <div class="stat-lbl">Curiosité pour les<br>réseaux & la cybersécurité</div>
+  </div>
+</div>
+
+<footer>
+  © 2025 Tom Bourricant · Portfolio BTS SIO SISR · Lycée Albert Londres, Cusset
+</footer>
+
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
