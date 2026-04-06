@@ -168,96 +168,7 @@
       --yellow-border: rgba(232,200,110,.3);
       --nav-bg: rgba(11,13,17,.88);
     }
-    .pf-nav {
-      position: fixed;
-      top: 0; left: 0; right: 0;
-      z-index: 300;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      padding: 14px 48px;
-      background: var(--nav-bg);
-      backdrop-filter: blur(24px);
-      border-bottom: 1px solid var(--border, #1f2330);
-    }
-    .pf-nav-left { display: flex; align-items: center; gap: 16px; }
-    .pf-back {
-      display: inline-flex;
-      align-items: center;
-      gap: 7px;
-      text-decoration: none;
-      font-family: 'Syne', sans-serif;
-      font-size: .78rem;
-      font-weight: 700;
-      letter-spacing: .05em;
-      color: var(--muted, #6b7080);
-      background: rgba(255,255,255,.04);
-      border: 1px solid var(--border, #1f2330);
-      padding: 8px 16px;
-      border-radius: 100px;
-      transition: color .2s, border-color .2s, background .2s, transform .2s;
-    }
-    .pf-back:hover {
-      color: var(--yellow);
-      border-color: var(--yellow-border);
-      background: var(--yellow-dim);
-      transform: translateX(-3px);
-    }
-    .pf-back .pf-arr { font-style: normal; }
-    .pf-logo {
-      font-family: 'Syne', sans-serif;
-      font-weight: 800;
-      font-size: 1rem;
-      letter-spacing: -.02em;
-      color: var(--text, #e8eaf0);
-      text-decoration: none;
-    }
-    .pf-logo span { color: var(--yellow); }
-    .pf-sep {
-      width: 1px; height: 20px;
-      background: var(--border, #1f2330);
-    }
     /* Dropdown */
-    .pf-menu { position: relative; }
-    .pf-trigger {
-      display: flex;
-      align-items: center;
-      gap: 9px;
-      padding: 9px 20px;
-      background: var(--yellow-dim);
-      border: 1px solid var(--yellow-border);
-      border-radius: 10px;
-      color: var(--yellow);
-      font-family: 'Syne', sans-serif;
-      font-size: .82rem;
-      font-weight: 700;
-      cursor: pointer;
-      transition: background .2s, border-color .2s;
-      user-select: none;
-      letter-spacing: .04em;
-    }
-    .pf-trigger:hover { background: rgba(232,200,110,.2); border-color: rgba(232,200,110,.5); }
-    .pf-trigger .pf-chevron {
-      font-style: normal; font-size: .68rem;
-      transition: transform .3s cubic-bezier(.4,0,.2,1);
-    }
-    .pf-menu.open .pf-chevron { transform: rotate(180deg); }
-    .pf-dropdown {
-      position: absolute;
-      top: calc(100% + 10px);
-      right: 0;
-      min-width: 250px;
-      background: var(--surface, #13151c);
-      border: 1px solid var(--border, #1f2330);
-      border-radius: 16px;
-      overflow: hidden;
-      box-shadow: 0 24px 60px rgba(0,0,0,.55);
-      opacity: 0;
-      transform: translateY(-10px) scale(.97);
-      pointer-events: none;
-      transition: opacity .25s cubic-bezier(.4,0,.2,1), transform .25s cubic-bezier(.4,0,.2,1);
-    }
-    .pf-menu.open .pf-dropdown { opacity: 1; transform: translateY(0) scale(1); pointer-events: auto; }
     .pf-dd-head {
       padding: 13px 20px 9px;
       font-family: 'Syne', sans-serif;
@@ -266,44 +177,13 @@
       color: var(--muted, #6b7080);
       border-bottom: 1px solid var(--border, #1f2330);
     }
-    .pf-dropdown a {
-      display: flex; align-items: center; gap: 13px;
-      padding: 13px 20px;
-      text-decoration: none;
-      color: var(--text, #e8eaf0);
-      font-size: .88rem; font-weight: 400;
-      transition: background .15s, color .15s;
-      border-bottom: 1px solid var(--border, #1f2330);
-    }
-    .pf-dropdown a:last-child { border-bottom: none; }
-    .pf-dropdown a:hover { background: var(--yellow-dim); color: var(--yellow); }
-    .pf-dd-ico {
-      width: 34px; height: 34px;
-      background: rgba(255,255,255,.04);
-      border: 1px solid var(--border, #1f2330);
-      border-radius: 9px;
-      display: flex; align-items: center; justify-content: center;
-      font-size: 1rem; flex-shrink: 0;
-      transition: border-color .15s, background .15s;
-    }
-    .pf-dropdown a:hover .pf-dd-ico { background: var(--yellow-dim); border-color: var(--yellow-border); }
     .pf-dd-info { flex: 1; }
-    .pf-dd-title { font-family: 'Syne', sans-serif; font-size: .83rem; font-weight: 700; display: block; }
-    .pf-dd-sub { font-size: .73rem; color: var(--muted, #6b7080); display: block; margin-top: 1px; }
-    .pf-dd-arr { color: var(--muted, #6b7080); font-size: .72rem; transition: color .15s, transform .15s; }
-    .pf-dropdown a:hover .pf-dd-arr { color: var(--yellow); transform: translateX(3px); }
-    .pf-dropdown a.active-page { background: var(--yellow-dim); }
-    .pf-dropdown a.active-page .pf-dd-title { color: var(--yellow); }
     /* push body content below fixed nav */
     body { padding-top: 64px !important; }
     @media (max-width: 600px) {
-      .pf-nav { padding: 12px 16px; }
-      .pf-sep, .pf-logo { display: none; }
     }
 
   
-  /* ── BOUTON RETOUR ACCUEIL ── */
-  .home-btn {
     position: fixed;
     bottom: 36px;
     left: 36px;
@@ -326,41 +206,14 @@
     backdrop-filter: blur(12px);
     animation: slideInLeft .5s cubic-bezier(.4,0,.2,1) both;
   }
-  .home-btn:hover {
-    background: rgba(245,200,66,.12);
-    border-color: rgba(245,200,66,.3);
-    color: #f5c842;
-    transform: translateY(-3px);
-  }
-  .home-btn .hb-ico {
-    width: 28px;
-    height: 28px;
-    background: rgba(255,255,255,.05);
-    border: 1px solid var(--border);
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: .85rem;
-    flex-shrink: 0;
-    transition: background .2s, border-color .2s;
-  }
-  .home-btn:hover .hb-ico {
-    background: rgba(245,200,66,.12);
-    border-color: rgba(245,200,66,.3);
-  }
   @keyframes slideInLeft {
     from { opacity: 0; transform: translateX(-20px); }
     to   { opacity: 1; transform: translateX(0); }
   }
   @media (max-width: 640px) {
-    .home-btn { bottom: 20px; left: 16px; padding: 10px 14px; }
-    .home-btn .hb-label { display: none; }
   }
 
   
-  /* ── BOUTON RETOUR ACCUEIL ── */
-  .home-btn {
     position: fixed;
     bottom: 36px;
     left: 36px;
@@ -383,103 +236,67 @@
     backdrop-filter: blur(12px);
     animation: slideInLeft .5s cubic-bezier(.4,0,.2,1) both;
   }
-  .home-btn:hover {
-    background: rgba(245,200,66,.12);
-    border-color: rgba(245,200,66,.3);
-    color: #f5c842;
-    transform: translateY(-3px);
-  }
-  .home-btn .hb-ico {
-    width: 28px;
-    height: 28px;
-    background: rgba(255,255,255,.05);
-    border: 1px solid var(--border);
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: .85rem;
-    flex-shrink: 0;
-    transition: background .2s, border-color .2s;
-  }
-  .home-btn:hover .hb-ico {
-    background: rgba(245,200,66,.12);
-    border-color: rgba(245,200,66,.3);
-  }
   @keyframes slideInLeft {
     from { opacity: 0; transform: translateX(-20px); }
     to   { opacity: 1; transform: translateX(0); }
   }
   @media (max-width: 640px) {
-    .home-btn { bottom: 20px; left: 16px; padding: 10px 14px; }
-    .home-btn .hb-label { display: none; }
   }
 
 </style>
+<style>
+  .site-nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 998;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 8px;
+    padding: 52px 20px 0;
+    pointer-events: none;
+  }
+  .site-nav a {
+    pointer-events: auto;
+    font-family: 'Syne', sans-serif;
+    font-size: .72rem;
+    font-weight: 700;
+    letter-spacing: .06em;
+    text-transform: uppercase;
+    color: #e8e9f0;
+    background: rgba(26,27,36,.85);
+    border: 1px solid #252633;
+    border-radius: 20px;
+    padding: 6px 14px;
+    text-decoration: none;
+    backdrop-filter: blur(12px);
+    transition: background .2s, border-color .2s, color .2s, transform .2s;
+  }
+  .site-nav a:hover {
+    background: rgba(245,200,66,.12);
+    border-color: rgba(245,200,66,.35);
+    color: #f5c842;
+    transform: translateY(-2px);
+  }
+</style>
 </head>
 <body>
-<a class="home-btn" href="Index.html" title="Retour à l'accueil">
-  <span class="hb-ico">←</span>
-  <span class="hb-label">Accueil</span>
-</a>
-
-<a class="home-btn" href="Index.html" title="Retour à l'accueil">
-  <span class="hb-ico">←</span>
-  <span class="hb-label">Accueil</span>
-</a>
+<div style="position:fixed;top:0;left:0;right:0;z-index:999;display:flex;justify-content:center;padding:14px 0;pointer-events:none;">
+  <a href="Index.html" style="pointer-events:auto;display:inline-flex;align-items:center;gap:8px;font-family:'Syne',sans-serif;font-size:.82rem;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:#0e0f14;background:#f5c842;border:none;border-radius:30px;padding:10px 24px;text-decoration:none;box-shadow:0 4px 20px rgba(245,200,66,.35);transition:background .2s,transform .2s,box-shadow .2s;" onmouseover="this.style.background='#f7d056';this.style.transform='translateY(-2px)';this.style.boxShadow='0 6px 24px rgba(245,200,66,.5)';" onmouseout="this.style.background='#f5c842';this.style.transform='translateY(0)';this.style.boxShadow='0 4px 20px rgba(245,200,66,.35)';">
+    <span>←</span> Accueil
+  </a>
+</div>
 
 
 <!-- ══ NAVBAR PORTFOLIO ══ -->
-<nav class="pf-nav">
-  <div class="pf-nav-left">
-    <a class="pf-back" href="Index.html"><i class="pf-arr">←</i> Accueil</a>
-    <div class="pf-sep"></div>
-    <a class="pf-logo" href="Index.html">Tom <span>BOURRICANT</span></a>
-  </div>
-  <div class="pf-menu" id="pfMenu">
-    <div class="pf-trigger" id="pfTrigger">
-      ☰ &nbsp;Naviguer <i class="pf-chevron">▾</i>
-    </div>
-    <div class="pf-dropdown">
-      <div class="pf-dd-head">Pages du portfolio</div>
-      <a href="Identité.html">
-        <span class="pf-dd-ico">👤</span>
-        <span class="pf-dd-info">
-          <span class="pf-dd-title">Identité</span>
-          <span class="pf-dd-sub">Qui suis-je ? Profil & infos</span>
-        </span>
-        <span class="pf-dd-arr">→</span>
-      </a>
-      <a href="Ma_Formation.html" class="active-page">
-        <span class="pf-dd-ico">🎓</span>
-        <span class="pf-dd-info">
-          <span class="pf-dd-title">Ma Formation</span>
-          <span class="pf-dd-sub">BTS SIO SISR · Parcours</span>
-        </span>
-        <span class="pf-dd-arr">→</span>
-      </a>
-      <a href="Expériences_Professionnelles.html">
-        <span class="pf-dd-ico">💼</span>
-        <span class="pf-dd-info">
-          <span class="pf-dd-title">Expériences</span>
-          <span class="pf-dd-sub">Stages & expériences pro</span>
-        </span>
-        <span class="pf-dd-arr">→</span>
-      </a>
-      <a href="Projets.html">
-        <span class="pf-dd-ico">🚀</span>
-        <span class="pf-dd-info">
-          <span class="pf-dd-title">Projets</span>
-          <span class="pf-dd-sub">Réalisations techniques</span>
-        </span>
-        <span class="pf-dd-arr">→</span>
-      </a>
-    </div>
-  </div>
-</nav>
 <!-- ══ /NAVBAR ══ -->
 
 <div class="cursor" id="cursor"></div>
+<div class="site-nav">
+    <a href="experiences-professionnelles.html">💼 Expériences</a>
+    <a href="Identite.html">👤 Identité</a>
+    <a href="Projets.html">🚀 Projets</a>
+</div>
 <div class="cursor-ring" id="cursorRing"></div>
 
 <!-- HEADER -->
@@ -866,11 +683,6 @@
 
 <script>
   (function(){
-    var menu = document.getElementById('pfMenu');
-    document.getElementById('pfTrigger').addEventListener('click', function(e){
-      e.stopPropagation();
-      menu.classList.toggle('open');
-    });
     document.addEventListener('click', function(e){
       if (!menu.contains(e.target)) menu.classList.remove('open');
     });
