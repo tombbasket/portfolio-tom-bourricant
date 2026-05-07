@@ -50,12 +50,28 @@
       overflow:hidden;
       display:grid;
       grid-template-columns:280px 1fr;
+      min-height:220px;
       opacity:0;transform:translateY(24px);
       transition:opacity .6s,transform .6s,border-color .3s;
     }
     .school-banner.visible{opacity:1;transform:translateY(0)}
     .school-banner:hover{border-color:rgba(57,255,110,.3)}
-    .school-photo{width:100%;height:100%;object-fit:contain;display:block;background:#0b0d11}
+
+    /* ── PHOTO FIX ── */
+    .school-photo-wrap{
+      width:280px;
+      flex-shrink:0;
+      overflow:hidden;
+    }
+    .school-photo{
+      width:100%;
+      height:100%;
+      min-height:220px;
+      object-fit:cover;
+      object-position:center;
+      display:block;
+    }
+
     .school-info{padding:28px 32px;display:flex;flex-direction:column;justify-content:center;gap:10px}
     .school-badge{display:inline-flex;align-items:center;gap:6px;font-size:.68rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--accent);background:rgba(57,255,110,.08);border:1px solid rgba(57,255,110,.2);padding:4px 12px;border-radius:100px;width:fit-content}
     .school-name{font-family:'Syne',sans-serif;font-size:1.5rem;font-weight:800;line-height:1.1}
@@ -136,7 +152,8 @@
       .panel-grid{grid-template-columns:1fr}
       .sidebar{position:static}
       .school-banner{grid-template-columns:1fr}
-      .school-photo{height:180px}
+      .school-photo-wrap{width:100%}
+      .school-photo{height:200px;min-height:unset}
       .skills-grid{grid-template-columns:1fr}
     }
     @media(max-width:600px){
@@ -144,11 +161,6 @@
       .tabs{flex-direction:column;width:100%}
     }
 
-    :root {
-      --yellow: #39ff6e;
-      --yellow-dim: rgba(57,255,110,.12);
-      --yellow-border: rgba(57,255,110,.3);
-    }
     body { padding-top: 64px !important; }
 
     .site-nav {
@@ -210,7 +222,9 @@
 
 <!-- ÉCOLE BANNER -->
 <div class="school-banner" id="schoolBanner">
-  <img class="school-photo" src="Photo lycée.jpg" alt="Lycée Albert Londres"/>
+  <div class="school-photo-wrap">
+    <img class="school-photo" src="Photo lycée.jpg" alt="Lycée Albert Londres"/>
+  </div>
   <div class="school-info">
     <div class="school-badge">🎓 Établissement</div>
     <div class="school-name">Lycée <em>Albert Londres</em></div>
@@ -249,7 +263,6 @@
       <div style="font-size:.63rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);margin-bottom:9px;">📎 Documents PDF</div>
       <div style="display:flex;flex-direction:column;gap:7px;max-width:540px;">
 
-        <!-- PDF 1 — remplace "nom1.pdf" et "Nom du fichier 1" -->
         <div style="display:flex;align-items:center;justify-content:space-between;gap:10px;background:rgba(255,255,255,.03);border:1px solid var(--border);border-radius:9px;padding:8px 12px;transition:border-color .2s;" onmouseover="this.style.borderColor='rgba(224,82,82,.3)'" onmouseout="this.style.borderColor='var(--border)'">
           <div style="display:flex;align-items:center;gap:8px;font-size:.8rem;color:var(--text);min-width:0;">
             <svg style="flex-shrink:0" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#e05252" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>
@@ -265,7 +278,6 @@
           </div>
         </div>
 
-        <!-- PDF 2 — remplace "nom2.pdf" et "Nom du fichier 2" -->
         <div style="display:flex;align-items:center;justify-content:space-between;gap:10px;background:rgba(255,255,255,.03);border:1px solid var(--border);border-radius:9px;padding:8px 12px;transition:border-color .2s;" onmouseover="this.style.borderColor='rgba(224,82,82,.3)'" onmouseout="this.style.borderColor='var(--border)'">
           <div style="display:flex;align-items:center;gap:8px;font-size:.8rem;color:var(--text);min-width:0;">
             <svg style="flex-shrink:0" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#e05252" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>
@@ -281,7 +293,6 @@
           </div>
         </div>
 
-        <!-- PDF 3 — remplace "nom3.pdf" et "Nom du fichier 3" -->
         <div style="display:flex;align-items:center;justify-content:space-between;gap:10px;background:rgba(255,255,255,.03);border:1px solid var(--border);border-radius:9px;padding:8px 12px;transition:border-color .2s;" onmouseover="this.style.borderColor='rgba(224,82,82,.3)'" onmouseout="this.style.borderColor='var(--border)'">
           <div style="display:flex;align-items:center;gap:8px;font-size:.8rem;color:var(--text);min-width:0;">
             <svg style="flex-shrink:0" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#e05252" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>
@@ -437,7 +448,7 @@
             <span class="pill pill-p">Anglais</span>
             <span class="pill pill-y">CEJM</span>
             <span class="pill pill-g">CEJMA</span>
-            <span class="pill pill-b">Atelier de professionnalisation (AP) </span>
+            <span class="pill pill-b">Atelier de professionnalisation (AP)</span>
             <span class="pill pill-p">CUGEX</span>
             <span class="pill pill-p">BLOC 2 - SISR</span>
             <span class="pill pill-p">BLOC 1 - Commun</span>
@@ -498,7 +509,7 @@
         <div class="side-card" data-reveal-side style="transition-delay:.1s">
           <div class="side-title">🎯 Débouchés</div>
           <div class="pill-row">
-            <span class="pill pill-b">Adminnistrateur Réseaux</span>
+            <span class="pill pill-b">Administrateur Réseaux</span>
             <span class="pill pill-p">Technicien Infrastructure</span>
           </div>
         </div>
