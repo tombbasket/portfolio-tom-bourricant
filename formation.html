@@ -49,8 +49,7 @@
       border-radius:var(--r);
       overflow:hidden;
       display:grid;
-      grid-template-columns:280px 1fr;
-      min-height:220px;
+      grid-template-columns:220px 1fr;
       opacity:0;transform:translateY(24px);
       transition:opacity .6s,transform .6s,border-color .3s;
     }
@@ -59,14 +58,14 @@
 
     /* ── PHOTO FIX ── */
     .school-photo-wrap{
-      width:280px;
+      width:220px;
       flex-shrink:0;
       overflow:hidden;
+      align-self:stretch;
     }
     .school-photo{
       width:100%;
       height:100%;
-      min-height:220px;
       object-fit:cover;
       object-position:center;
       display:block;
@@ -153,7 +152,7 @@
       .sidebar{position:static}
       .school-banner{grid-template-columns:1fr}
       .school-photo-wrap{width:100%}
-      .school-photo{height:200px;min-height:unset}
+      .school-photo{height:200px}
       .skills-grid{grid-template-columns:1fr}
     }
     @media(max-width:600px){
