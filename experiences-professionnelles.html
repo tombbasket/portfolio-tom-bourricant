@@ -26,6 +26,7 @@
       font-family: 'Instrument Sans', sans-serif;
       min-height: 100vh;
       overflow-x: hidden;
+      padding-top: 64px !important;
     }
 
     body::before {
@@ -39,7 +40,6 @@
       z-index: 0;
     }
 
-    /* CURSOR */
     .cursor {
       width: 10px; height: 10px;
       border-radius: 50%;
@@ -60,7 +60,6 @@
       transform: translate(-50%,-50%);
     }
 
-    /* HEADER */
     header {
       position: relative;
       z-index: 10;
@@ -104,7 +103,6 @@
       animation: fadeUp .7s .35s forwards;
     }
 
-    /* FILTER BAR */
     .filter-bar {
       position: relative;
       z-index: 10;
@@ -137,7 +135,6 @@
       color: #0b0d11;
     }
 
-    /* TIMELINE */
     .timeline {
       position: relative;
       z-index: 10;
@@ -157,7 +154,6 @@
       opacity: .22;
     }
 
-    /* CARD */
     .exp-card {
       display: grid;
       grid-template-columns: 56px 1fr;
@@ -288,7 +284,6 @@
     }
     .card-location svg { opacity: .5; }
 
-    /* MISSIONS */
     .missions-toggle {
       background: none;
       border: none;
@@ -353,27 +348,6 @@
       border: 1px solid rgba(79,142,247,.15);
     }
 
-    .company-logo[title]:hover {
-      border-color: rgba(57,255,110,.5);
-      box-shadow: 0 0 0 3px rgba(57,255,110,.12);
-    }
-    .company-logo[title]:hover::after {
-      content: '📷';
-      position: absolute;
-      font-size: .9rem;
-      bottom: -2px;
-      right: -2px;
-      background: var(--accent);
-      border-radius: 50%;
-      width: 20px;
-      height: 20px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: .6rem;
-    }
-
-    /* FOOTER */
     footer {
       position: relative;
       z-index: 10;
@@ -400,17 +374,13 @@
       .card-top { flex-wrap: wrap; }
       h1 { font-size: 2.2rem; }
     }
-  
-    
-  
-    /* ══ NAVBAR PORTFOLIO ══ */
+
     :root {
       --yellow: #39ff6e;
       --yellow-dim: rgba(57,255,110,.12);
       --yellow-border: rgba(57,255,110,.3);
       --nav-bg: rgba(11,13,17,.88);
     }
-    /* Dropdown */
     .pf-dd-head {
       padding: 13px 20px 9px;
       font-family: 'Syne', sans-serif;
@@ -420,107 +390,42 @@
       border-bottom: 1px solid var(--border, #1f2330);
     }
     .pf-dd-info { flex: 1; }
-    /* push body content below fixed nav */
-    body { padding-top: 64px !important; }
-    @media (max-width: 600px) {
+  </style>
+  <style>
+    .site-nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 998;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 8px;
+      padding: 52px 20px 0;
+      pointer-events: none;
     }
-
-  
-    position: fixed;
-    bottom: 36px;
-    left: 36px;
-    z-index: 200;
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    padding: 12px 20px;
-    background: var(--surface);
-    border: 1px solid var(--border);
-    border-radius: 50px;
-    color: var(--muted);
-    font-family: 'Syne', sans-serif;
-    font-size: .78rem;
-    font-weight: 700;
-    letter-spacing: .06em;
-    text-decoration: none;
-    box-shadow: 0 8px 32px rgba(0,0,0,.45);
-    transition: background .2s, border-color .2s, color .2s, transform .25s;
-    backdrop-filter: blur(12px);
-    animation: slideInLeft .5s cubic-bezier(.4,0,.2,1) both;
-  }
-  @keyframes slideInLeft {
-    from { opacity: 0; transform: translateX(-20px); }
-    to   { opacity: 1; transform: translateX(0); }
-  }
-  @media (max-width: 640px) {
-  }
-
-  
-    position: fixed;
-    bottom: 36px;
-    left: 36px;
-    z-index: 200;
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    padding: 12px 20px;
-    background: var(--surface);
-    border: 1px solid var(--border);
-    border-radius: 50px;
-    color: var(--muted);
-    font-family: 'Syne', sans-serif;
-    font-size: .78rem;
-    font-weight: 700;
-    letter-spacing: .06em;
-    text-decoration: none;
-    box-shadow: 0 8px 32px rgba(0,0,0,.45);
-    transition: background .2s, border-color .2s, color .2s, transform .25s;
-    backdrop-filter: blur(12px);
-    animation: slideInLeft .5s cubic-bezier(.4,0,.2,1) both;
-  }
-  @keyframes slideInLeft {
-    from { opacity: 0; transform: translateX(-20px); }
-    to   { opacity: 1; transform: translateX(0); }
-  }
-  @media (max-width: 640px) {
-  }
-
-</style>
-<style>
-  .site-nav {
-    position: fixed;
-    top: 0; left: 0; right: 0;
-    z-index: 998;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 8px;
-    padding: 52px 20px 0;
-    pointer-events: none;
-  }
-  .site-nav a {
-    pointer-events: auto;
-    font-family: 'Syne', sans-serif;
-    font-size: .72rem;
-    font-weight: 700;
-    letter-spacing: .06em;
-    text-transform: uppercase;
-    color: #e8e9f0;
-    background: rgba(26,27,36,.85);
-    border: 1px solid #252633;
-    border-radius: 20px;
-    padding: 6px 14px;
-    text-decoration: none;
-    backdrop-filter: blur(12px);
-    transition: background .2s, border-color .2s, color .2s, transform .2s;
-  }
-  .site-nav a:hover {
-    background: rgba(57,255,110,.12);
-    border-color: rgba(57,255,110,.35);
-    color: #39ff6e;
-    transform: translateY(-2px);
-  }
-</style>
+    .site-nav a {
+      pointer-events: auto;
+      font-family: 'Syne', sans-serif;
+      font-size: .72rem;
+      font-weight: 700;
+      letter-spacing: .06em;
+      text-transform: uppercase;
+      color: #e8e9f0;
+      background: rgba(26,27,36,.85);
+      border: 1px solid #252633;
+      border-radius: 20px;
+      padding: 6px 14px;
+      text-decoration: none;
+      backdrop-filter: blur(12px);
+      transition: background .2s, border-color .2s, color .2s, transform .2s;
+    }
+    .site-nav a:hover {
+      background: rgba(57,255,110,.12);
+      border-color: rgba(57,255,110,.35);
+      color: #39ff6e;
+      transform: translateY(-2px);
+    }
+  </style>
 </head>
 <body>
 <div style="position:fixed;top:0;left:0;right:0;z-index:999;display:flex;justify-content:center;padding:14px 0;pointer-events:none;">
@@ -534,217 +439,235 @@
     <a href="Projets.html">🚀 Projets</a>
 </div>
 
-  
-<!-- ══ NAVBAR PORTFOLIO ══ -->
-<!-- ══ /NAVBAR ══ -->
-
 <div class="cursor" id="cursor"></div>
-  <div class="cursor-ring" id="cursorRing"></div>
+<div class="cursor-ring" id="cursorRing"></div>
 
-  <header>
-    <div class="header-tag">Portfolio · Parcours</div>
-    <h1>Expériences<br/><span>Professionnelles</span></h1>
-    <p class="header-sub">Un aperçu de mon parcours, mes missions et les compétences acquises au fil des expériences professionnelles.</p>
-  </header>
+<header>
+  <div class="header-tag">Portfolio · Parcours</div>
+  <h1>Expériences<br/><span>Professionnelles</span></h1>
+  <p class="header-sub">Un aperçu de mon parcours, mes missions et les compétences acquises au fil des expériences professionnelles.</p>
+</header>
 
-  <div class="filter-bar">
-    <button class="filter-btn active" data-filter="all">Tout afficher</button>
-    <button class="filter-btn" data-filter="informatique">Informatique</button>
-    <button class="filter-btn" data-filter="industrie">Collecte et tri de déchets</button>
-    <button class="filter-btn" data-filter="Electroménager">Électroménager</button>
+<div class="filter-bar">
+  <button class="filter-btn active" data-filter="all">Tout afficher</button>
+  <button class="filter-btn" data-filter="informatique">Informatique</button>
+  <button class="filter-btn" data-filter="industrie">Collecte et tri de déchets</button>
+  <button class="filter-btn" data-filter="Electroménager">Électroménager</button>
+</div>
+
+<section class="timeline" id="timeline">
+
+  <!-- DGFIP -->
+  <div class="exp-card" data-category="informatique">
+    <div class="dot-col"><div class="dot"></div></div>
+    <div class="card-body">
+      <div class="card-top">
+        <div class="company-logo placeholder" style="font-size:.75rem;letter-spacing:-.02em;">DGFIP</div>
+        <div class="card-meta">
+          <div class="card-period">Mai 2026 – Juin 2026</div>
+          <div class="card-title">Stagiaire Informaticien</div>
+          <div class="card-company">DGFIP — Cusset &amp; Moulins</div>
+        </div>
+        <span class="badge badge-blue">Informatique</span>
+      </div>
+      <div class="card-location">
+        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s-8-4.5-8-11.8A8 8 0 0 1 12 2a8 8 0 0 1 8 8.2c0 7.3-8 11.8-8 11.8z"/><circle cx="12" cy="10" r="3"/></svg>
+        Cusset &amp; Moulins
+      </div>
+      <button class="missions-toggle" onclick="toggleMissions(this)">
+        <span class="arrow">▶</span> Voir mes missions
+      </button>
+      <ul class="missions-list">
+        <li>Préparation des postes de travail pour les agents DGFIP</li>
+        <li>Dépannage du matériel informatique</li>
+        <li>Mise à jour du parc informatique</li>
+        <li>Suivi des sauvegardes</li>
+      </ul>
+      <div class="card-tags">
+        <span class="tag">Support IT</span>
+        <span class="tag">Maintenance</span>
+        <span class="tag">Parc informatique</span>
+        <span class="tag">Sauvegarde</span>
+      </div>
+    </div>
   </div>
 
-  <section class="timeline" id="timeline">
-
-<!-- SUEZ -->
-    <div class="exp-card" data-category="industrie">
-      <div class="dot-col"><div class="dot"></div></div>
-      <div class="card-body">
-        <div class="card-top">
-          <div class="company-logo">
-            <img src="SUEZ.PNG" alt="SUEZ"
-              onerror="this.parentElement.classList.add('placeholder');this.parentElement.innerHTML='SZ'"/>
-          </div>
-          <div class="card-meta">
-            <div class="card-period">Juin 2025 - Août 2025</div>
-            <div class="card-title">Intérimaire polyvalent</div>
-            <div class="card-company">SUEZ</div>
-          </div>
-          <span class="badge badge-green">Collecte et tri de déchets</span>
+  <!-- SUEZ -->
+  <div class="exp-card" data-category="industrie">
+    <div class="dot-col"><div class="dot"></div></div>
+    <div class="card-body">
+      <div class="card-top">
+        <div class="company-logo">
+          <img src="SUEZ.PNG" alt="SUEZ"
+            onerror="this.parentElement.classList.add('placeholder');this.parentElement.innerHTML='SZ'"/>
         </div>
-        <div class="card-location">
-          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s-8-4.5-8-11.8A8 8 0 0 1 12 2a8 8 0 0 1 8 8.2c0 7.3-8 11.8-8 11.8z"/><circle cx="12" cy="10" r="3"/></svg>
-          Mably
+        <div class="card-meta">
+          <div class="card-period">Juin 2025 – Août 2025</div>
+          <div class="card-title">Intérimaire polyvalent</div>
+          <div class="card-company">SUEZ</div>
         </div>
-        <button class="missions-toggle" onclick="toggleMissions(this)">
-          <span class="arrow">▶</span> Voir mes missions
-        </button>
-        <ul class="missions-list">
-          <li>Accueil des clients</li>
-          <li>Pesée des camions</li>
-          <li>Travail en équipe</li>
-        </ul>
-        <div class="card-tags">
-          <span class="tag">Environnement</span>
-        </div>
+        <span class="badge badge-green">Collecte et tri de déchets</span>
+      </div>
+      <div class="card-location">
+        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s-8-4.5-8-11.8A8 8 0 0 1 12 2a8 8 0 0 1 8 8.2c0 7.3-8 11.8-8 11.8z"/><circle cx="12" cy="10" r="3"/></svg>
+        Mably
+      </div>
+      <button class="missions-toggle" onclick="toggleMissions(this)">
+        <span class="arrow">▶</span> Voir mes missions
+      </button>
+      <ul class="missions-list">
+        <li>Accueil des clients</li>
+        <li>Pesée des camions</li>
+        <li>Travail en équipe</li>
+      </ul>
+      <div class="card-tags">
+        <span class="tag">Environnement</span>
       </div>
     </div>
+  </div>
 
- <!-- IT CONTACT -->
-    <div class="exp-card" data-category="informatique">
-      <div class="dot-col"><div class="dot"></div></div>
-      <div class="card-body">
-        <div class="card-top">
-          <div class="company-logo">
-            <img src="it contact.png" alt="IT Contact"
-              onerror="this.parentElement.classList.add('placeholder');this.parentElement.innerHTML='IT'"/>
-          </div>
-          <div class="card-meta">
-            <div class="card-period">Mai 2025 - Juin 2025</div>
-            <div class="card-title">Technicien Informatique</div>
-            <div class="card-company">IT Contact</div>
-          </div>
-          <span class="badge badge-blue">Informatique</span>
+  <!-- IT CONTACT -->
+  <div class="exp-card" data-category="informatique">
+    <div class="dot-col"><div class="dot"></div></div>
+    <div class="card-body">
+      <div class="card-top">
+        <div class="company-logo">
+          <img src="it contact.png" alt="IT Contact"
+            onerror="this.parentElement.classList.add('placeholder');this.parentElement.innerHTML='IT'"/>
         </div>
-        <div class="card-location">
-          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s-8-4.5-8-11.8A8 8 0 0 1 12 2a8 8 0 0 1 8 8.2c0 7.3-8 11.8-8 11.8z"/><circle cx="12" cy="10" r="3"/></svg>
-          Roanne
+        <div class="card-meta">
+          <div class="card-period">Mai 2025 – Juin 2025</div>
+          <div class="card-title">Technicien Informatique</div>
+          <div class="card-company">IT Contact</div>
         </div>
-        <button class="missions-toggle" onclick="toggleMissions(this)">
-          <span class="arrow">▶</span> Voir mes missions
-        </button>
-        <ul class="missions-list">
-          <li>Assistance et support technique aux utilisateurs</li>
-          <li>Installation et configuration de postes de travail</li>
-          <li>Maintenance préventive et corrective du parc informatique</li>
-          <li>Diagnostic et résolution d'incidents matériels et logiciels</li>
-        </ul>
-        <div class="card-tags">
-          <span class="tag">Support IT</span>
-          <span class="tag">Maintenance</span>
-          <span class="tag">Réseau</span>
-          <span class="tag">Windows</span>
-        </div>
+        <span class="badge badge-blue">Informatique</span>
+      </div>
+      <div class="card-location">
+        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s-8-4.5-8-11.8A8 8 0 0 1 12 2a8 8 0 0 1 8 8.2c0 7.3-8 11.8-8 11.8z"/><circle cx="12" cy="10" r="3"/></svg>
+        Roanne
+      </div>
+      <button class="missions-toggle" onclick="toggleMissions(this)">
+        <span class="arrow">▶</span> Voir mes missions
+      </button>
+      <ul class="missions-list">
+        <li>Assistance et support technique aux utilisateurs</li>
+        <li>Installation et configuration de postes de travail</li>
+        <li>Maintenance préventive et corrective du parc informatique</li>
+        <li>Diagnostic et résolution d'incidents matériels et logiciels</li>
+      </ul>
+      <div class="card-tags">
+        <span class="tag">Support IT</span>
+        <span class="tag">Maintenance</span>
+        <span class="tag">Réseau</span>
+        <span class="tag">Windows</span>
       </div>
     </div>
+  </div>
 
-    <!-- ETS DUBANCHET -->
-    <div class="exp-card" data-category="electromenager">
-      <div class="dot-col"><div class="dot"></div></div>
-      <div class="card-body">
-        <div class="card-top">
-          <div class="company-logo" id="dubanchet-logo" onclick="document.getElementById('dubanchet-input').click()" style="cursor:pointer;" title="Clique pour ajouter une photo">
-            <img src="pulsat.png" alt="Dubanchet"
-              onerror="this.parentElement.classList.add('placeholder');this.parentElement.innerHTML='DB<input type=\'file\' id=\'dubanchet-input\' accept=\'image/*\' style=\'display:none\' onchange=\'handleLogo(this,\\\'dubanchet-logo\\\')\'/>'"/>
-          </div>
-          <input type="file" id="dubanchet-input" accept="image/*" style="display:none" onchange="handleLogo(this,'dubanchet-logo')"/>
-          <div class="card-meta">
-            <div class="card-period">Janvier 2024 – Février 2024</div>
-            <div class="card-title">Technicien en Électroménager</div>
-            <div class="card-company">Ets Dubanchet Audio Vidéo Ménager</div>
-          </div>
-          <span class="badge badge-yellow">Électroménager</span>
+  <!-- ETS DUBANCHET -->
+  <div class="exp-card" data-category="electromenager">
+    <div class="dot-col"><div class="dot"></div></div>
+    <div class="card-body">
+      <div class="card-top">
+        <div class="company-logo" id="dubanchet-logo" onclick="document.getElementById('dubanchet-input').click()" style="cursor:pointer;" title="Clique pour ajouter une photo">
+          <img src="pulsat.png" alt="Dubanchet"
+            onerror="this.parentElement.classList.add('placeholder');this.parentElement.innerHTML='DB'"/>
         </div>
-        <div class="card-location">
-          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s-8-4.5-8-11.8A8 8 0 0 1 12 2a8 8 0 0 1 8 8.2c0 7.3-8 11.8-8 11.8z"/><circle cx="12" cy="10" r="3"/></svg>
-          Le Coteau
+        <input type="file" id="dubanchet-input" accept="image/*" style="display:none" onchange="handleLogo(this,'dubanchet-logo')"/>
+        <div class="card-meta">
+          <div class="card-period">Janvier 2024 – Février 2024</div>
+          <div class="card-title">Technicien en Électroménager</div>
+          <div class="card-company">Ets Dubanchet Audio Vidéo Ménager</div>
         </div>
-        <button class="missions-toggle" onclick="toggleMissions(this)">
-          <span class="arrow">▶</span> Voir mes missions
-        </button>
-        <ul class="missions-list">
-          <li>Maintenance des différents appareils gros électroménager</li>
-          <li>Installation et dépannage chez les clients</li>
-        </ul>
-        <div class="card-tags">
-          <span class="tag">Électroménager</span>
-          <span class="tag">Dépannage</span>
-          <span class="tag">Installation</span>
-        </div>
+        <span class="badge badge-yellow">Électroménager</span>
+      </div>
+      <div class="card-location">
+        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s-8-4.5-8-11.8A8 8 0 0 1 12 2a8 8 0 0 1 8 8.2c0 7.3-8 11.8-8 11.8z"/><circle cx="12" cy="10" r="3"/></svg>
+        Le Coteau
+      </div>
+      <button class="missions-toggle" onclick="toggleMissions(this)">
+        <span class="arrow">▶</span> Voir mes missions
+      </button>
+      <ul class="missions-list">
+        <li>Maintenance des différents appareils gros électroménager</li>
+        <li>Installation et dépannage chez les clients</li>
+      </ul>
+      <div class="card-tags">
+        <span class="tag">Électroménager</span>
+        <span class="tag">Dépannage</span>
+        <span class="tag">Installation</span>
       </div>
     </div>
+  </div>
 
-  </section>
+</section>
 
-  <footer>Portfolio — Expériences Professionnelles</footer>
-
-  <script>
-    // ── LOGO PHOTO UPLOAD ──
-    function handleLogo(input, logoId) {
-      const file = input.files[0];
-      if (!file) return;
-      const url = URL.createObjectURL(file);
-      const container = document.getElementById(logoId);
-      container.classList.remove('placeholder');
-      container.innerHTML = `<img src="${url}" alt="Logo" style="width:100%;height:100%;object-fit:contain;"/>
-        <input type="file" id="${input.id}" accept="image/*" style="display:none" onchange="handleLogo(this,'${logoId}')"/>`;
-      container.title = 'Clique pour changer la photo';
-    }
-
-    // ── CURSOR PERSONNALISÉ ──
-    const cursor = document.getElementById('cursor');
-    const ring   = document.getElementById('cursorRing');
-    let rx = 0, ry = 0, mx = 0, my = 0;
-
-    document.addEventListener('mousemove', e => { mx = e.clientX; my = e.clientY; });
-
-    (function animCursor() {
-      rx += (mx - rx) * .15;
-      ry += (my - ry) * .15;
-      cursor.style.left = mx + 'px';
-      cursor.style.top  = my + 'px';
-      ring.style.left   = rx + 'px';
-      ring.style.top    = ry + 'px';
-      requestAnimationFrame(animCursor);
-    })();
-
-    // ── APPARITION AU SCROLL ──
-    const cards = document.querySelectorAll('.exp-card');
-    const obs = new IntersectionObserver(entries => {
-      entries.forEach(e => {
-        if (e.isIntersecting) {
-          e.target.classList.add('visible');
-          obs.unobserve(e.target);
-        }
-      });
-    }, { threshold: .12 });
-
-    cards.forEach((c, i) => {
-      c.style.transitionDelay = (i * .1) + 's';
-      obs.observe(c);
-    });
-
-    // ── FILTRES ──
-    document.querySelectorAll('.filter-btn').forEach(btn => {
-      btn.addEventListener('click', () => {
-        document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
-        btn.classList.add('active');
-        const f = btn.dataset.filter;
-        cards.forEach(c => {
-          if (f === 'all' || c.dataset.category === f) {
-            c.classList.remove('hidden');
-          } else {
-            c.classList.remove('visible');
-            c.classList.add('hidden');
-          }
-        });
-      });
-    });
-
-    // ── ACCORDION MISSIONS ──
-    function toggleMissions(btn) {
-      const list = btn.nextElementSibling;
-      btn.classList.toggle('open');
-      list.classList.toggle('open');
-    }
-  </script>
+<footer>Portfolio — Expériences Professionnelles</footer>
 
 <script>
-  (function(){
-    document.addEventListener('click', function(e){
-      if (!menu.contains(e.target)) menu.classList.remove('open');
-    });
+  function handleLogo(input, logoId) {
+    const file = input.files[0];
+    if (!file) return;
+    const url = URL.createObjectURL(file);
+    const container = document.getElementById(logoId);
+    container.classList.remove('placeholder');
+    container.innerHTML = `<img src="${url}" alt="Logo" style="width:100%;height:100%;object-fit:contain;"/>
+      <input type="file" id="${input.id}" accept="image/*" style="display:none" onchange="handleLogo(this,'${logoId}')"/>`;
+    container.title = 'Clique pour changer la photo';
+  }
+
+  const cursor = document.getElementById('cursor');
+  const ring   = document.getElementById('cursorRing');
+  let rx = 0, ry = 0, mx = 0, my = 0;
+
+  document.addEventListener('mousemove', e => { mx = e.clientX; my = e.clientY; });
+
+  (function animCursor() {
+    rx += (mx - rx) * .15;
+    ry += (my - ry) * .15;
+    cursor.style.left = mx + 'px';
+    cursor.style.top  = my + 'px';
+    ring.style.left   = rx + 'px';
+    ring.style.top    = ry + 'px';
+    requestAnimationFrame(animCursor);
   })();
+
+  const cards = document.querySelectorAll('.exp-card');
+  const obs = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        e.target.classList.add('visible');
+        obs.unobserve(e.target);
+      }
+    });
+  }, { threshold: .12 });
+
+  cards.forEach((c, i) => {
+    c.style.transitionDelay = (i * .1) + 's';
+    obs.observe(c);
+  });
+
+  document.querySelectorAll('.filter-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      const f = btn.dataset.filter;
+      cards.forEach(c => {
+        if (f === 'all' || c.dataset.category === f) {
+          c.classList.remove('hidden');
+        } else {
+          c.classList.remove('visible');
+          c.classList.add('hidden');
+        }
+      });
+    });
+  });
+
+  function toggleMissions(btn) {
+    const list = btn.nextElementSibling;
+    btn.classList.toggle('open');
+    list.classList.toggle('open');
+  }
 </script>
 
 </body>
