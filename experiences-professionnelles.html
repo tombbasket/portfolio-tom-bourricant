@@ -462,8 +462,10 @@
     <div class="dot-col"><div class="dot"></div></div>
     <div class="card-body">
       <div class="card-top">
-        <div class="company-logo placeholder" id="dgfip-logo" onclick="document.getElementById('dgfip-input').click()" style="cursor:pointer;font-size:.75rem;letter-spacing:-.02em;" title="Clique pour ajouter une photo">DGFIP</div>
-        <input type="file" id="dgfip-input" accept="image/*" style="display:none" onchange="handleLogo(this,'dgfip-logo')"/>
+        <div class="company-logo">
+          <img src="dgfip.png" alt="DGFIP"
+            onerror="this.parentElement.classList.add('placeholder');this.parentElement.innerHTML='DGFIP'"/>
+        </div>
         <div class="card-meta">
           <div class="card-period">Mai 2026 – Juin 2026</div>
           <div class="card-title">Stagiaire Informaticien</div>
