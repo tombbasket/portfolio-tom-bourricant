@@ -135,30 +135,73 @@
       color: #0b0d11;
     }
 
-    .timeline {
+    /* ── Phase sections ── */
+    .phase-section {
       position: relative;
       z-index: 10;
-      padding: 56px 6vw 80px;
+      padding: 0 6vw;
+    }
+
+    .phase-header {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      padding: 40px 0 8px;
+      opacity: 0;
+      animation: fadeUp .6s forwards;
+    }
+
+    .phase-label {
+      font-family: 'Syne', sans-serif;
+      font-size: .65rem;
+      font-weight: 700;
+      letter-spacing: .22em;
+      text-transform: uppercase;
+      color: var(--accent);
+      background: rgba(57,255,110,.07);
+      border: 1px solid rgba(57,255,110,.18);
+      padding: 5px 13px;
+      border-radius: 100px;
+      white-space: nowrap;
+    }
+
+    .phase-title {
+      font-family: 'Syne', sans-serif;
+      font-size: 1rem;
+      font-weight: 700;
+      color: var(--text);
+    }
+
+    .phase-line {
+      flex: 1;
+      height: 1px;
+      background: linear-gradient(to right, var(--border), transparent);
+    }
+
+    /* ── Timeline ── */
+    .timeline {
+      position: relative;
       display: flex;
       flex-direction: column;
+      padding: 8px 0 40px;
     }
 
     .timeline::before {
       content: '';
       position: absolute;
-      left: calc(6vw + 27px);
-      top: 56px;
-      bottom: 80px;
+      left: 27px;
+      top: 0;
+      bottom: 0;
       width: 2px;
       background: linear-gradient(to bottom, var(--accent), var(--accent2), transparent);
-      opacity: .22;
+      opacity: .2;
     }
 
     .exp-card {
       display: grid;
       grid-template-columns: 56px 1fr;
       gap: 0 28px;
-      padding-bottom: 48px;
+      padding-bottom: 32px;
       opacity: 0;
       transform: translateY(30px);
       transition: opacity .55s ease, transform .55s ease;
@@ -368,7 +411,7 @@
     ::-webkit-scrollbar-thumb { background: var(--border); border-radius: 10px; }
 
     @media (max-width: 600px) {
-      .timeline::before { left: calc(6vw + 19px); }
+      .timeline::before { left: 19px; }
       .exp-card { grid-template-columns: 40px 1fr; gap: 0 14px; }
       .card-body { padding: 18px; }
       .card-top { flex-wrap: wrap; }
@@ -376,20 +419,8 @@
     }
 
     :root {
-      --yellow: #39ff6e;
-      --yellow-dim: rgba(57,255,110,.12);
-      --yellow-border: rgba(57,255,110,.3);
       --nav-bg: rgba(11,13,17,.88);
     }
-    .pf-dd-head {
-      padding: 13px 20px 9px;
-      font-family: 'Syne', sans-serif;
-      font-size: .62rem; font-weight: 700;
-      letter-spacing: .2em; text-transform: uppercase;
-      color: var(--muted, #6b7080);
-      border-bottom: 1px solid var(--border, #1f2330);
-    }
-    .pf-dd-info { flex: 1; }
   </style>
   <style>
     .site-nav {
@@ -434,9 +465,9 @@
   </a>
 </div>
 <div class="site-nav">
-    <a href="formation.html">🎓 Formation</a>
-    <a href="Identite.html">👤 Identité</a>
-    <a href="Projets.html">🚀 Projets</a>
+  <a href="formation.html">🎓 Formation</a>
+  <a href="Identite.html">👤 Identité</a>
+  <a href="Projets.html">🚀 Projets</a>
 </div>
 
 <div class="cursor" id="cursor"></div>
@@ -452,158 +483,217 @@
   <button class="filter-btn active" data-filter="all">Tout afficher</button>
   <button class="filter-btn" data-filter="informatique">Informatique</button>
   <button class="filter-btn" data-filter="industrie">Collecte et tri de déchets</button>
-  <button class="filter-btn" data-filter="Electroménager">Électroménager</button>
+  <button class="filter-btn" data-filter="electromenager">Électroménager</button>
 </div>
 
-<section class="timeline" id="timeline">
-
-  <!-- DGFIP -->
-  <div class="exp-card" data-category="informatique">
-    <div class="dot-col"><div class="dot"></div></div>
-    <div class="card-body">
-      <div class="card-top">
-        <div class="company-logo">
-          <img src="dgfip.png" alt="DGFIP"
-            onerror="this.parentElement.classList.add('placeholder');this.parentElement.innerHTML='DGFIP'"/>
-        </div>
-        <div class="card-meta">
-          <div class="card-period">Mai 2026 – Juin 2026</div>
-          <div class="card-title">Stagiaire Informaticien</div>
-          <div class="card-company">DGFIP — Cusset &amp; Moulins</div>
-        </div>
-        <span class="badge badge-blue">Informatique</span>
-      </div>
-      <div class="card-location">
-        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s-8-4.5-8-11.8A8 8 0 0 1 12 2a8 8 0 0 1 8 8.2c0 7.3-8 11.8-8 11.8z"/><circle cx="12" cy="10" r="3"/></svg>
-        Cusset &amp; Moulins
-      </div>
-      <button class="missions-toggle" onclick="toggleMissions(this)">
-        <span class="arrow">▶</span> Voir mes missions
-      </button>
-      <ul class="missions-list">
-        <li>Préparation des postes de travail pour les agents DGFIP</li>
-        <li>Dépannage du matériel informatique</li>
-        <li>Mise à jour du parc informatique</li>
-        <li>Suivi des sauvegardes</li>
-      </ul>
-      <div class="card-tags">
-        <span class="tag">Support IT</span>
-        <span class="tag">Maintenance</span>
-        <span class="tag">Parc informatique</span>
-        <span class="tag">Sauvegarde</span>
-      </div>
-    </div>
+<!-- ══════════════════════════════════════
+     PHASE 1 — Avant le BTS
+════════════════════════════════════════ -->
+<div class="phase-section">
+  <div class="phase-header" style="animation-delay:.55s">
+    <span class="phase-label">Phase 1</span>
+    <span class="phase-title">Avant le BTS</span>
+    <span class="phase-line"></span>
   </div>
 
-  <!-- SUEZ -->
-  <div class="exp-card" data-category="industrie">
-    <div class="dot-col"><div class="dot"></div></div>
-    <div class="card-body">
-      <div class="card-top">
-        <div class="company-logo">
-          <img src="SUEZ.PNG" alt="SUEZ"
-            onerror="this.parentElement.classList.add('placeholder');this.parentElement.innerHTML='SZ'"/>
+  <div class="timeline">
+
+    <!-- ETS DUBANCHET -->
+    <div class="exp-card" data-category="electromenager">
+      <div class="dot-col"><div class="dot"></div></div>
+      <div class="card-body">
+        <div class="card-top">
+          <div class="company-logo" id="dubanchet-logo" onclick="document.getElementById('dubanchet-input').click()" style="cursor:pointer;" title="Clique pour ajouter une photo">
+            <img src="pulsat.png" alt="Dubanchet"
+              onerror="this.parentElement.classList.add('placeholder');this.parentElement.innerHTML='DB'"/>
+          </div>
+          <input type="file" id="dubanchet-input" accept="image/*" style="display:none" onchange="handleLogo(this,'dubanchet-logo')"/>
+          <div class="card-meta">
+            <div class="card-period">Janvier 2024 – Février 2024</div>
+            <div class="card-title">Technicien en Électroménager</div>
+            <div class="card-company">Ets Dubanchet Audio Vidéo Ménager</div>
+          </div>
+          <span class="badge badge-yellow">Électroménager</span>
         </div>
-        <div class="card-meta">
-          <div class="card-period">Juin 2025 – Août 2025</div>
-          <div class="card-title">Intérimaire polyvalent</div>
-          <div class="card-company">SUEZ</div>
+        <div class="card-location">
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s-8-4.5-8-11.8A8 8 0 0 1 12 2a8 8 0 0 1 8 8.2c0 7.3-8 11.8-8 11.8z"/><circle cx="12" cy="10" r="3"/></svg>
+          Le Coteau
         </div>
-        <span class="badge badge-green">Collecte et tri de déchets</span>
-      </div>
-      <div class="card-location">
-        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s-8-4.5-8-11.8A8 8 0 0 1 12 2a8 8 0 0 1 8 8.2c0 7.3-8 11.8-8 11.8z"/><circle cx="12" cy="10" r="3"/></svg>
-        Mably
-      </div>
-      <button class="missions-toggle" onclick="toggleMissions(this)">
-        <span class="arrow">▶</span> Voir mes missions
-      </button>
-      <ul class="missions-list">
-        <li>Accueil des clients</li>
-        <li>Pesée des camions</li>
-        <li>Travail en équipe</li>
-      </ul>
-      <div class="card-tags">
-        <span class="tag">Environnement</span>
+        <button class="missions-toggle" onclick="toggleMissions(this)">
+          <span class="arrow">▶</span> Voir mes missions
+        </button>
+        <ul class="missions-list">
+          <li>Maintenance des différents appareils gros électroménager</li>
+          <li>Installation et dépannage chez les clients</li>
+        </ul>
+        <div class="card-tags">
+          <span class="tag">Électroménager</span>
+          <span class="tag">Dépannage</span>
+          <span class="tag">Installation</span>
+        </div>
       </div>
     </div>
-  </div>
 
-  <!-- IT CONTACT -->
-  <div class="exp-card" data-category="informatique">
-    <div class="dot-col"><div class="dot"></div></div>
-    <div class="card-body">
-      <div class="card-top">
-        <div class="company-logo">
-          <img src="it contact.png" alt="IT Contact"
-            onerror="this.parentElement.classList.add('placeholder');this.parentElement.innerHTML='IT'"/>
+    <!-- IT CONTACT -->
+    <div class="exp-card" data-category="informatique">
+      <div class="dot-col"><div class="dot"></div></div>
+      <div class="card-body">
+        <div class="card-top">
+          <div class="company-logo">
+            <img src="it contact.png" alt="IT Contact"
+              onerror="this.parentElement.classList.add('placeholder');this.parentElement.innerHTML='IT'"/>
+          </div>
+          <div class="card-meta">
+            <div class="card-period">Mai 2025 – Juin 2025</div>
+            <div class="card-title">Technicien Informatique</div>
+            <div class="card-company">IT Contact</div>
+          </div>
+          <span class="badge badge-blue">Informatique</span>
         </div>
-        <div class="card-meta">
-          <div class="card-period">Mai 2025 – Juin 2025</div>
-          <div class="card-title">Technicien Informatique</div>
-          <div class="card-company">IT Contact</div>
+        <div class="card-location">
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s-8-4.5-8-11.8A8 8 0 0 1 12 2a8 8 0 0 1 8 8.2c0 7.3-8 11.8-8 11.8z"/><circle cx="12" cy="10" r="3"/></svg>
+          Roanne
         </div>
-        <span class="badge badge-blue">Informatique</span>
-      </div>
-      <div class="card-location">
-        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s-8-4.5-8-11.8A8 8 0 0 1 12 2a8 8 0 0 1 8 8.2c0 7.3-8 11.8-8 11.8z"/><circle cx="12" cy="10" r="3"/></svg>
-        Roanne
-      </div>
-      <button class="missions-toggle" onclick="toggleMissions(this)">
-        <span class="arrow">▶</span> Voir mes missions
-      </button>
-      <ul class="missions-list">
-        <li>Assistance et support technique aux utilisateurs</li>
-        <li>Installation et configuration de postes de travail</li>
-        <li>Maintenance préventive et corrective du parc informatique</li>
-        <li>Diagnostic et résolution d'incidents matériels et logiciels</li>
-      </ul>
-      <div class="card-tags">
-        <span class="tag">Support IT</span>
-        <span class="tag">Maintenance</span>
-        <span class="tag">Réseau</span>
-        <span class="tag">Windows</span>
+        <button class="missions-toggle" onclick="toggleMissions(this)">
+          <span class="arrow">▶</span> Voir mes missions
+        </button>
+        <ul class="missions-list">
+          <li>Assistance et support technique aux utilisateurs</li>
+          <li>Installation et configuration de postes de travail</li>
+          <li>Maintenance préventive et corrective du parc informatique</li>
+          <li>Diagnostic et résolution d'incidents matériels et logiciels</li>
+        </ul>
+        <div class="card-tags">
+          <span class="tag">Support IT</span>
+          <span class="tag">Maintenance</span>
+          <span class="tag">Réseau</span>
+          <span class="tag">Windows</span>
+        </div>
       </div>
     </div>
+
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════
+     PHASE 2 — Job d'été
+════════════════════════════════════════ -->
+<div class="phase-section">
+  <div class="phase-header" style="animation-delay:.65s">
+    <span class="phase-label">Phase 2</span>
+    <span class="phase-title">Job d'été</span>
+    <span class="phase-line"></span>
   </div>
 
-  <!-- ETS DUBANCHET -->
-  <div class="exp-card" data-category="electromenager">
-    <div class="dot-col"><div class="dot"></div></div>
-    <div class="card-body">
-      <div class="card-top">
-        <div class="company-logo" id="dubanchet-logo" onclick="document.getElementById('dubanchet-input').click()" style="cursor:pointer;" title="Clique pour ajouter une photo">
-          <img src="pulsat.png" alt="Dubanchet"
-            onerror="this.parentElement.classList.add('placeholder');this.parentElement.innerHTML='DB'"/>
+  <div class="timeline">
+
+    <!-- SUEZ -->
+    <div class="exp-card" data-category="industrie">
+      <div class="dot-col"><div class="dot"></div></div>
+      <div class="card-body">
+        <div class="card-top">
+          <div class="company-logo">
+            <img src="SUEZ.PNG" alt="SUEZ"
+              onerror="this.parentElement.classList.add('placeholder');this.parentElement.innerHTML='SZ'"/>
+          </div>
+          <div class="card-meta">
+            <div class="card-period">Juin 2025 – Août 2025</div>
+            <div class="card-title">Intérimaire polyvalent</div>
+            <div class="card-company">SUEZ</div>
+          </div>
+          <span class="badge badge-green">Collecte et tri de déchets</span>
         </div>
-        <input type="file" id="dubanchet-input" accept="image/*" style="display:none" onchange="handleLogo(this,'dubanchet-logo')"/>
-        <div class="card-meta">
-          <div class="card-period">Janvier 2024 – Février 2024</div>
-          <div class="card-title">Technicien en Électroménager</div>
-          <div class="card-company">Ets Dubanchet Audio Vidéo Ménager</div>
+        <div class="card-location">
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s-8-4.5-8-11.8A8 8 0 0 1 12 2a8 8 0 0 1 8 8.2c0 7.3-8 11.8-8 11.8z"/><circle cx="12" cy="10" r="3"/></svg>
+          Mably
         </div>
-        <span class="badge badge-yellow">Électroménager</span>
-      </div>
-      <div class="card-location">
-        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s-8-4.5-8-11.8A8 8 0 0 1 12 2a8 8 0 0 1 8 8.2c0 7.3-8 11.8-8 11.8z"/><circle cx="12" cy="10" r="3"/></svg>
-        Le Coteau
-      </div>
-      <button class="missions-toggle" onclick="toggleMissions(this)">
-        <span class="arrow">▶</span> Voir mes missions
-      </button>
-      <ul class="missions-list">
-        <li>Maintenance des différents appareils gros électroménager</li>
-        <li>Installation et dépannage chez les clients</li>
-      </ul>
-      <div class="card-tags">
-        <span class="tag">Électroménager</span>
-        <span class="tag">Dépannage</span>
-        <span class="tag">Installation</span>
+        <button class="missions-toggle" onclick="toggleMissions(this)">
+          <span class="arrow">▶</span> Voir mes missions
+        </button>
+        <ul class="missions-list">
+          <li>Accueil des clients</li>
+          <li>Pesée des camions</li>
+          <li>Travail en équipe</li>
+        </ul>
+        <div class="card-tags">
+          <span class="tag">Environnement</span>
+        </div>
       </div>
     </div>
+
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════
+     PHASE 3 — BTS SIO — 1re année, semestre 2
+════════════════════════════════════════ -->
+<div class="phase-section">
+  <div class="phase-header" style="animation-delay:.75s">
+    <span class="phase-label">Phase 3</span>
+    <span class="phase-title">BTS SIO — 1<sup style="font-size:.65em">re</sup> année · Semestre 2</span>
+    <span class="phase-line"></span>
   </div>
 
-</section>
+  <div class="timeline">
+
+    <!-- DGFIP -->
+    <div class="exp-card" data-category="informatique">
+      <div class="dot-col"><div class="dot"></div></div>
+      <div class="card-body">
+        <div class="card-top">
+          <div class="company-logo">
+            <img src="dgfip.png" alt="DGFIP"
+              onerror="this.parentElement.classList.add('placeholder');this.parentElement.innerHTML='DGFIP'"/>
+          </div>
+          <div class="card-meta">
+            <div class="card-period">Mai 2026 – Juin 2026</div>
+            <div class="card-title">Stagiaire Informaticien</div>
+            <div class="card-company">DGFIP — Cusset &amp; Moulins</div>
+          </div>
+          <span class="badge badge-blue">Informatique</span>
+        </div>
+        <div class="card-location">
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s-8-4.5-8-11.8A8 8 0 0 1 12 2a8 8 0 0 1 8 8.2c0 7.3-8 11.8-8 11.8z"/><circle cx="12" cy="10" r="3"/></svg>
+          Cusset &amp; Moulins
+        </div>
+        <button class="missions-toggle" onclick="toggleMissions(this)">
+          <span class="arrow">▶</span> Voir mes missions
+        </button>
+        <ul class="missions-list">
+          <li>Préparation des postes de travail pour les agents DGFIP</li>
+          <li>Dépannage du matériel informatique</li>
+          <li>Mise à jour du parc informatique</li>
+          <li>Suivi des sauvegardes</li>
+        </ul>
+        <div class="card-tags">
+          <span class="tag">Support IT</span>
+          <span class="tag">Maintenance</span>
+          <span class="tag">Parc informatique</span>
+          <span class="tag">Sauvegarde</span>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════
+     PHASE 4 — BTS SIO — 2e année
+════════════════════════════════════════ -->
+<div class="phase-section">
+  <div class="phase-header" style="animation-delay:.85s">
+    <span class="phase-label">Phase 4</span>
+    <span class="phase-title">BTS SIO — 2<sup style="font-size:.65em">e</sup> année</span>
+    <span class="phase-line"></span>
+  </div>
+
+  <div style="position:relative;z-index:10;padding:24px 0 56px;display:flex;align-items:center;gap:16px;">
+    <div style="width:56px;display:flex;justify-content:center;">
+      <div style="width:14px;height:14px;border-radius:50%;background:var(--border);border:2px solid var(--bg);box-shadow:0 0 0 3px rgba(255,255,255,.05);"></div>
+    </div>
+    <p style="font-size:.85rem;color:var(--muted);font-style:italic;">À venir…</p>
+  </div>
+</div>
 
 <footer>Portfolio — Expériences Professionnelles</footer>
 
@@ -656,7 +746,8 @@
       btn.classList.add('active');
       const f = btn.dataset.filter;
       cards.forEach(c => {
-        if (f === 'all' || c.dataset.category === f) {
+        const cat = c.dataset.category;
+        if (f === 'all' || cat === f) {
           c.classList.remove('hidden');
         } else {
           c.classList.remove('visible');
