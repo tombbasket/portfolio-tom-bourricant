@@ -195,43 +195,6 @@
     .info-row .val { color: var(--text); }
     .info-row .lbl { color: var(--muted); font-size: .75rem; display: block; margin-top: 1px; }
 
-    /* ─── CV BUTTON ──────────────────────────────────── */
-    .cv-btn {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 10px;
-      width: 100%;
-      padding: 14px 20px;
-      background: var(--yellow);
-      color: #0e0f14;
-      font-family: 'Syne', sans-serif;
-      font-size: .9rem;
-      font-weight: 700;
-      border-radius: 12px;
-      border: none;
-      cursor: pointer;
-      text-decoration: none;
-      transition: opacity .2s, transform .2s;
-    }
-    .cv-btn:hover { opacity: .9; transform: translateY(-2px); }
-
-    .cv-placeholder {
-      background: var(--surface);
-      border: 2px dashed var(--yellow-border);
-      border-radius: 12px;
-      padding: 28px 20px;
-      text-align: center;
-      color: var(--muted);
-      font-size: .85rem;
-      line-height: 1.7;
-    }
-    .cv-placeholder .ico { font-size: 2rem; display: block; margin-bottom: 10px; }
-    .cv-placeholder strong { color: var(--yellow); display: block; margin-bottom: 6px; font-family: 'Syne', sans-serif; font-size: .9rem; }
-
-    /* file input hidden */
-    #cv-input { display: none; }
-
     /* ─── RIGHT : À PROPOS ───────────────────────────── */
     .right {
       display: flex;
@@ -334,91 +297,9 @@
       .main { grid-template-columns: 1fr; padding: 32px 20px 80px; }
       header { padding: 40px 20px 36px; }
     }
-  
-    
-  
-    /* ══ NAVBAR PORTFOLIO ══ */
-    :root {
-      --yellow: #39ff6e;
-      --yellow-dim: rgba(57,255,110,.12);
-      --yellow-border: rgba(57,255,110,.3);
-      --nav-bg: rgba(11,13,17,.88);
-    }
-    /* Dropdown */
-    .pf-dd-head {
-      padding: 13px 20px 9px;
-      font-family: 'Syne', sans-serif;
-      font-size: .62rem; font-weight: 700;
-      letter-spacing: .2em; text-transform: uppercase;
-      color: var(--muted, #6b7080);
-      border-bottom: 1px solid var(--border, #1f2330);
-    }
-    .pf-dd-info { flex: 1; }
+
     /* push body content below fixed nav */
     body { padding-top: 64px !important; }
-    @media (max-width: 600px) {
-    }
-
-  
-    position: fixed;
-    bottom: 36px;
-    left: 36px;
-    z-index: 200;
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    padding: 12px 20px;
-    background: var(--surface);
-    border: 1px solid var(--border);
-    border-radius: 50px;
-    color: var(--muted);
-    font-family: 'Syne', sans-serif;
-    font-size: .78rem;
-    font-weight: 700;
-    letter-spacing: .06em;
-    text-decoration: none;
-    box-shadow: 0 8px 32px rgba(0,0,0,.45);
-    transition: background .2s, border-color .2s, color .2s, transform .25s;
-    backdrop-filter: blur(12px);
-    animation: slideInLeft .5s cubic-bezier(.4,0,.2,1) both;
-  }
-  @keyframes slideInLeft {
-    from { opacity: 0; transform: translateX(-20px); }
-    to   { opacity: 1; transform: translateX(0); }
-  }
-  @media (max-width: 640px) {
-  }
-
-  
-    position: fixed;
-    bottom: 36px;
-    left: 36px;
-    z-index: 200;
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    padding: 12px 20px;
-    background: var(--surface);
-    border: 1px solid var(--border);
-    border-radius: 50px;
-    color: var(--muted);
-    font-family: 'Syne', sans-serif;
-    font-size: .78rem;
-    font-weight: 700;
-    letter-spacing: .06em;
-    text-decoration: none;
-    box-shadow: 0 8px 32px rgba(0,0,0,.45);
-    transition: background .2s, border-color .2s, color .2s, transform .25s;
-    backdrop-filter: blur(12px);
-    animation: slideInLeft .5s cubic-bezier(.4,0,.2,1) both;
-  }
-  @keyframes slideInLeft {
-    from { opacity: 0; transform: translateX(-20px); }
-    to   { opacity: 1; transform: translateX(0); }
-  }
-  @media (max-width: 640px) {
-  }
-
 
     /* ── CURSEUR PERSONNALISÉ ── */
     .cursor {
@@ -475,7 +356,7 @@
 <body>
 <div class="cursor" id="cursor"></div>
 <div class="site-nav">
-    <a href="experiences-professionnelles.html">💼 Expériences</a>
+    <a href="experiences.html">💼 Expériences</a>
     <a href="formation.html">🎓 Formation</a>
     <a href="Projets.html">🚀 Projets</a>
 </div>
@@ -614,10 +495,22 @@
   </div>
 </div>
 
-<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
-  function handleCV(input) {
-    const file = input.files[0];
-    if (!file) return;
-    const url = URL.createObjectURL(file);
-    const zone = document.getElementById('cv-zone');
-    zone.innerHTML = `<span class="ico">✅</span><strong>${f
+<script>
+  const cursor = document.getElementById('cursor');
+  const ring   = document.getElementById('cursorRing');
+  let rx = 0, ry = 0, mx = 0, my = 0;
+
+  document.addEventListener('mousemove', e => { mx = e.clientX; my = e.clientY; });
+
+  (function animCursor() {
+    rx += (mx - rx) * .15;
+    ry += (my - ry) * .15;
+    cursor.style.left = mx + 'px';
+    cursor.style.top  = my + 'px';
+    ring.style.left   = rx + 'px';
+    ring.style.top    = ry + 'px';
+    requestAnimationFrame(animCursor);
+  })();
+</script>
+</body>
+</html>
