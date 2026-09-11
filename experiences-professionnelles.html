@@ -687,11 +687,46 @@
     <span class="phase-line"></span>
   </div>
 
-  <div style="position:relative;z-index:10;padding:24px 0 56px;display:flex;align-items:center;gap:16px;">
-    <div style="width:56px;display:flex;justify-content:center;">
-      <div style="width:14px;height:14px;border-radius:50%;background:var(--border);border:2px solid var(--bg);box-shadow:0 0 0 3px rgba(255,255,255,.05);"></div>
+  <div class="timeline">
+
+    <!-- DGFIP ALTERNANCE -->
+    <div class="exp-card" data-category="informatique">
+      <div class="dot-col"><div class="dot"></div></div>
+      <div class="card-body">
+        <div class="card-top">
+          <div class="company-logo">
+            <img src="dgfip.png" alt="DGFIP"
+              onerror="this.parentElement.classList.add('placeholder');this.parentElement.innerHTML='DGFIP'"/>
+          </div>
+          <div class="card-meta">
+            <div class="card-period">Septembre 2026 – Août 2027</div>
+            <div class="card-title">Apprenti Informaticien</div>
+            <div class="card-company">DGFIP — Moulins</div>
+          </div>
+          <span class="badge badge-blue">Informatique</span>
+        </div>
+        <div class="card-location">
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s-8-4.5-8-11.8A8 8 0 0 1 12 2a8 8 0 0 1 8 8.2c0 7.3-8 11.8-8 11.8z"/><circle cx="12" cy="10" r="3"/></svg>
+          Moulins
+        </div>
+        <button class="missions-toggle" onclick="toggleMissions(this)">
+          <span class="arrow">▶</span> Voir mes missions
+        </button>
+        <ul class="missions-list">
+          <li>Préparation des postes de travail pour les agents DGFIP</li>
+          <li>Dépannage du matériel informatique</li>
+          <li>Mise à jour du parc informatique</li>
+          <li>Suivi des sauvegardes</li>
+        </ul>
+        <div class="card-tags">
+          <span class="tag">Support IT</span>
+          <span class="tag">Maintenance</span>
+          <span class="tag">Parc informatique</span>
+          <span class="tag">Sauvegarde</span>
+        </div>
+      </div>
     </div>
-    <p style="font-size:.85rem;color:var(--muted);font-style:italic;">À venir…</p>
+
   </div>
 </div>
 
