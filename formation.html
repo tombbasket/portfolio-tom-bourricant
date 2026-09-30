@@ -68,6 +68,9 @@
         linear-gradient(90deg, rgba(57,255,110,.06) 1px, transparent 1px) 0 0/40px 40px,
         var(--bg2, #13141b);
     }
+    .school-map{position:relative;overflow:hidden}
+    .school-photo{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:2;filter:brightness(.92) contrast(1.05);transition:transform .6s,filter .3s}
+    .school-banner:hover .school-photo{transform:scale(1.04);filter:brightness(1) contrast(1.05)}
     .school-map-inner{text-align:center}
     .school-map-pin{font-size:2.6rem;margin-bottom:10px;filter:drop-shadow(0 0 14px rgba(57,255,110,.5))}
     .school-map-city{font-family:'Syne',sans-serif;font-size:1.6rem;font-weight:800;color:#39ff6e;letter-spacing:-.01em}
@@ -223,7 +226,8 @@
 
 <!-- ÉCOLE BANNER -->
 <div class="school-banner" id="schoolBanner">
-  <div class="school-map" aria-hidden="true">
+  <div class="school-map">
+    <img class="school-photo" src="Photo lycée.jpg" alt="Lycée Albert Londres — Cusset" onerror="this.style.display='none'"/>
     <div class="school-map-inner">
       <div class="school-map-pin">📍</div>
       <div class="school-map-city">Cusset</div>
