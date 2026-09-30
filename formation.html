@@ -61,12 +61,17 @@
       width:100%;
       height:100%;
       min-height:300px;
-      border:none;
-      display:block;
-      filter:grayscale(60%) contrast(1.1);
-      transition:filter .3s;
+      display:flex;align-items:center;justify-content:center;
+      background:
+        radial-gradient(circle at 50% 50%, rgba(57,255,110,.14), transparent 55%),
+        linear-gradient(rgba(57,255,110,.06) 1px, transparent 1px) 0 0/40px 40px,
+        linear-gradient(90deg, rgba(57,255,110,.06) 1px, transparent 1px) 0 0/40px 40px,
+        var(--bg2, #13141b);
     }
-    .school-banner:hover .school-map{filter:grayscale(20%) contrast(1.1)}
+    .school-map-inner{text-align:center}
+    .school-map-pin{font-size:2.6rem;margin-bottom:10px;filter:drop-shadow(0 0 14px rgba(57,255,110,.5))}
+    .school-map-city{font-family:'Syne',sans-serif;font-size:1.6rem;font-weight:800;color:#39ff6e;letter-spacing:-.01em}
+    .school-map-sub{font-size:.8rem;color:var(--muted,#6b6d80);margin-top:4px;letter-spacing:.08em;text-transform:uppercase}
 
     .school-info{padding:28px 32px;display:flex;flex-direction:column;justify-content:center;gap:10px}
     .school-badge{display:inline-flex;align-items:center;gap:6px;font-size:.68rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--accent);background:rgba(57,255,110,.08);border:1px solid rgba(57,255,110,.2);padding:4px 12px;border-radius:100px;width:fit-content}
@@ -218,14 +223,13 @@
 
 <!-- ÉCOLE BANNER -->
 <div class="school-banner" id="schoolBanner">
-  <iframe
-    class="school-map"
-    src="https://www.google.com/maps?q=Lyc%C3%A9e+Albert+Londres+Cusset+03300&hl=fr&z=16&output=embed"
-    allowfullscreen=""
-    loading="lazy"
-    referrerpolicy="no-referrer-when-downgrade"
-    title="Lycée Albert Londres — Cusset">
-  </iframe>
+  <div class="school-map" aria-hidden="true">
+    <div class="school-map-inner">
+      <div class="school-map-pin">📍</div>
+      <div class="school-map-city">Cusset</div>
+      <div class="school-map-sub">Allier · Auvergne-Rhône-Alpes</div>
+    </div>
+  </div>
   <div class="school-info">
     <div class="school-badge">🎓 Établissement</div>
     <div class="school-name">Lycée <em>Albert Londres</em></div>
