@@ -1,0 +1,1045 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Mes Projets — Portfolio</title>
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --bg: #0e0f14;
+      --bg2: #13141b;
+      --surface: #1a1b24;
+      --border: #25263380;
+      --border-solid: #252633;
+      --yellow: #39ff6e;
+      --yellow-dim: rgba(57,255,110,.12);
+      --yellow-border: rgba(57,255,110,.3);
+      --text: #e8e9f0;
+      --muted: #6b6d80;
+      --muted2: #4a4c5e;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: 'DM Sans', sans-serif;
+      font-weight: 300;
+      min-height: 100vh;
+      overflow-x: hidden;
+    }
+
+    /* ─── HEADER ─────────────────────────────────────── */
+    header {
+      position: relative;
+      padding: 64px 56px 52px;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-family: 'Syne', sans-serif;
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: .2em;
+      text-transform: uppercase;
+      color: var(--yellow);
+      background: var(--yellow-dim);
+      border: 1px solid var(--yellow-border);
+      padding: 5px 14px;
+      border-radius: 20px;
+      margin-bottom: 28px;
+    }
+    .tag::before { content: '📁'; font-size: 11px; }
+
+    header h1 {
+      font-family: 'Syne', sans-serif;
+      font-size: clamp(3rem, 7vw, 5.5rem);
+      font-weight: 800;
+      line-height: 1.0;
+      letter-spacing: -.03em;
+      margin-bottom: 20px;
+    }
+
+    header h1 .white { color: var(--text); }
+    header h1 .gold  { color: var(--yellow); }
+
+    header p {
+      color: var(--muted);
+      font-size: 1rem;
+      max-width: 480px;
+      line-height: 1.75;
+    }
+
+    /* ─── DIVIDER ─────────────────────────────────────── */
+    .divider {
+      border: none;
+      border-top: 1px solid var(--border-solid);
+      margin: 0;
+    }
+
+    /* ─── STATS BAR ──────────────────────────────────── */
+    .stats-bar {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 32px 56px;
+      display: flex;
+      gap: 40px;
+      flex-wrap: wrap;
+    }
+    .stat { display: flex; flex-direction: column; }
+    .stat .num {
+      font-family: 'Syne', sans-serif;
+      font-size: 1.9rem;
+      font-weight: 800;
+      color: var(--yellow);
+      line-height: 1;
+      margin-bottom: 4px;
+    }
+    .stat .lbl {
+      font-size: .73rem;
+      color: var(--muted);
+      text-transform: uppercase;
+      letter-spacing: .12em;
+    }
+
+    /* ─── ACCORDION DROPDOWN ─────────────────────────── */
+    .dropdown-bar {
+      max-width: 1200px;
+      margin: 32px auto 40px;
+      padding: 0 56px;
+      display: flex;
+      align-items: flex-start;
+      gap: 14px;
+      flex-wrap: wrap;
+    }
+
+    .dropdown-label {
+      font-family: 'Syne', sans-serif;
+      font-size: .72rem;
+      font-weight: 700;
+      letter-spacing: .15em;
+      text-transform: uppercase;
+      color: var(--muted);
+      padding-top: 10px;
+    }
+
+    /* Accordion wrapper */
+    .accordion-menu {
+      position: relative;
+      min-width: 340px;
+    }
+
+    /* Trigger button */
+    .accordion-trigger {
+      cursor: pointer;
+      font-family: 'DM Sans', sans-serif;
+      font-size: .85rem;
+      font-weight: 500;
+      padding: 9px 40px 9px 16px;
+      border-radius: 10px;
+      border: 1px solid var(--border-solid);
+      background: var(--surface);
+      color: var(--text);
+      width: 100%;
+      text-align: left;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      transition: border-color .2s, box-shadow .2s;
+      position: relative;
+      user-select: none;
+    }
+    .accordion-trigger::after {
+      content: '';
+      position: absolute;
+      right: 14px;
+      top: 50%;
+      transform: translateY(-50%) rotate(0deg);
+      width: 0; height: 0;
+      border-left: 5px solid transparent;
+      border-right: 5px solid transparent;
+      border-top: 6px solid var(--muted);
+      transition: transform .25s;
+    }
+    .accordion-trigger.open::after {
+      transform: translateY(-50%) rotate(180deg);
+    }
+    .accordion-trigger:hover,
+    .accordion-trigger.open {
+      border-color: var(--yellow-border);
+      box-shadow: 0 0 0 3px rgba(57,255,110,.08);
+    }
+
+    /* Dropdown panel */
+    .accordion-panel {
+      position: absolute;
+      top: calc(100% + 6px);
+      left: 0;
+      width: 100%;
+      background: var(--surface);
+      border: 1px solid var(--border-solid);
+      border-radius: 12px;
+      overflow: hidden;
+      z-index: 50;
+      box-shadow: 0 16px 48px rgba(0,0,0,.6);
+      /* Hidden state */
+      max-height: 0;
+      opacity: 0;
+      pointer-events: none;
+      transform: translateY(-6px);
+      transition: max-height .35s cubic-bezier(.4,0,.2,1),
+                  opacity .25s,
+                  transform .25s;
+    }
+    .accordion-panel.open {
+      max-height: 600px;
+      opacity: 1;
+      pointer-events: auto;
+      transform: translateY(0);
+    }
+
+    /* "Toutes les missions" option */
+    .acc-all {
+      padding: 11px 16px;
+      font-size: .85rem;
+      font-weight: 500;
+      color: var(--text);
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      border-bottom: 1px solid var(--border-solid);
+      transition: background .15s;
+    }
+    .acc-all:hover { background: rgba(57,255,110,.06); }
+    .acc-all.selected { color: var(--yellow); }
+
+    /* Year group header */
+    .acc-year {
+      padding: 10px 16px 6px;
+      font-family: 'Syne', sans-serif;
+      font-size: .63rem;
+      font-weight: 700;
+      letter-spacing: .18em;
+      text-transform: uppercase;
+      color: var(--muted2);
+      border-bottom: 1px solid var(--border-solid);
+    }
+
+    /* Semester header — clickable toggle */
+    .acc-semester {
+      padding: 9px 16px 9px 20px;
+      font-family: 'Syne', sans-serif;
+      font-size: .72rem;
+      font-weight: 700;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+      color: var(--muted);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      cursor: pointer;
+      user-select: none;
+      transition: background .15s, color .15s;
+      border-bottom: 1px solid var(--border-solid);
+    }
+    .acc-semester:hover { background: rgba(57,255,110,.05); color: var(--text); }
+    .acc-semester.sem-open { color: var(--yellow); }
+
+    .acc-semester .sem-arrow {
+      width: 0; height: 0;
+      border-left: 4px solid transparent;
+      border-right: 4px solid transparent;
+      border-top: 5px solid currentColor;
+      transition: transform .25s;
+      flex-shrink: 0;
+    }
+    .acc-semester.sem-open .sem-arrow {
+      transform: rotate(180deg);
+    }
+
+    /* Mission items inside a semester */
+    .acc-missions {
+      overflow: hidden;
+      max-height: 0;
+      transition: max-height .3s cubic-bezier(.4,0,.2,1);
+    }
+    .acc-missions.sem-open {
+      max-height: 400px;
+    }
+
+    .acc-item {
+      padding: 8px 16px 8px 32px;
+      font-size: .82rem;
+      color: var(--muted);
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      transition: background .15s, color .15s;
+      border-bottom: 1px solid rgba(37,38,51,.6);
+    }
+    .acc-item:last-child { border-bottom: none; }
+    .acc-item:hover { background: rgba(57,255,110,.07); color: var(--text); }
+    .acc-item.selected {
+      color: var(--yellow);
+      background: var(--yellow-dim);
+    }
+    .acc-item .acc-icon { flex-shrink: 0; font-size: 13px; }
+
+    /* ─── GRID ───────────────────────────────────────── */
+    .grid {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 56px 100px;
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+      gap: 20px;
+    }
+
+    /* ─── CARD ───────────────────────────────────────── */
+    .card {
+      background: var(--surface);
+      border: 1px solid var(--border-solid);
+      border-radius: 16px;
+      padding: 28px;
+      display: flex;
+      flex-direction: column;
+      gap: 18px;
+      transition: transform .3s cubic-bezier(.34,1.4,.64,1), border-color .2s, box-shadow .3s;
+      position: relative;
+      overflow: hidden;
+      animation: fadeUp .45s both;
+    }
+    .card::after {
+      content: '';
+      position: absolute;
+      top: 0; left: 24px; right: 24px;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, var(--yellow-border), transparent);
+      opacity: 0;
+      transition: opacity .3s;
+    }
+    .card:hover {
+      transform: translateY(-5px);
+      border-color: rgba(57,255,110,.25);
+      box-shadow: 0 20px 50px rgba(0,0,0,.5), 0 0 0 1px rgba(57,255,110,.08);
+    }
+    .card:hover::after { opacity: 1; }
+
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(24px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+    .card:nth-child(1) { animation-delay: .04s; }
+    .card:nth-child(2) { animation-delay: .10s; }
+    .card:nth-child(3) { animation-delay: .16s; }
+    .card:nth-child(4) { animation-delay: .22s; }
+    .card:nth-child(5) { animation-delay: .28s; }
+    .card:nth-child(6) { animation-delay: .34s; }
+    .card:nth-child(7) { animation-delay: .40s; }
+    .card:nth-child(8) { animation-delay: .46s; }
+    .card:nth-child(9) { animation-delay: .52s; }
+    .card:nth-child(10) { animation-delay: .58s; }
+
+    .card-head {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 10px;
+    }
+    .icons-row { display: flex; gap: 6px; flex-wrap: wrap; }
+    .tech-icon {
+      width: 36px; height: 36px;
+      border-radius: 9px;
+      background: var(--bg2);
+      border: 1px solid var(--border-solid);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 16px;
+    }
+    .period-badge {
+      font-family: 'DM Sans', sans-serif;
+      font-size: .7rem;
+      color: var(--muted);
+      background: var(--bg2);
+      border: 1px solid var(--border-solid);
+      border-radius: 6px;
+      padding: 3px 9px;
+      white-space: nowrap;
+      flex-shrink: 0;
+    }
+    .cat-label {
+      font-size: .65rem;
+      font-weight: 700;
+      letter-spacing: .15em;
+      text-transform: uppercase;
+      color: var(--yellow);
+    }
+    .card h2 {
+      font-family: 'Syne', sans-serif;
+      font-size: 1.05rem;
+      font-weight: 700;
+      line-height: 1.35;
+      color: var(--text);
+    }
+    .card p.context {
+      font-size: .86rem;
+      color: var(--muted);
+      line-height: 1.72;
+      flex: 1;
+    }
+    .resources { display: flex; flex-direction: column; gap: 10px; }
+    .res-group label {
+      font-size: .65rem;
+      letter-spacing: .14em;
+      text-transform: uppercase;
+      color: var(--muted2);
+      font-weight: 600;
+      display: block;
+      margin-bottom: 6px;
+    }
+    .res-list { display: flex; flex-wrap: wrap; gap: 5px; }
+    .chip {
+      font-size: .75rem;
+      padding: 3px 10px;
+      border-radius: 5px;
+      background: var(--bg);
+      border: 1px solid var(--border-solid);
+      color: var(--muted);
+    }
+    .chip.produced {
+      background: var(--yellow-dim);
+      border-color: var(--yellow-border);
+      color: var(--yellow);
+    }
+    .avis {
+      border-left: 2px solid var(--yellow);
+      padding-left: 12px;
+      font-size: .8rem;
+      color: var(--muted);
+      font-style: italic;
+      line-height: 1.7;
+    }
+
+    /* ─── NAVBAR ─────────────────────────────────────── */
+    .site-nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 998;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 8px;
+      padding: 52px 20px 0;
+      pointer-events: none;
+    }
+    .site-nav a {
+      pointer-events: auto;
+      font-family: 'Syne', sans-serif;
+      font-size: .72rem;
+      font-weight: 700;
+      letter-spacing: .06em;
+      text-transform: uppercase;
+      color: #e8e9f0;
+      background: rgba(26,27,36,.85);
+      border: 1px solid #252633;
+      border-radius: 20px;
+      padding: 6px 14px;
+      text-decoration: none;
+      backdrop-filter: blur(12px);
+      transition: background .2s, border-color .2s, color .2s, transform .2s;
+    }
+    .site-nav a:hover {
+      background: rgba(57,255,110,.12);
+      border-color: rgba(57,255,110,.35);
+      color: #39ff6e;
+      transform: translateY(-2px);
+    }
+
+    /* ── CURSEUR ── */
+    .cursor {
+      width: 10px; height: 10px; border-radius: 50%;
+      background: #39ff6e;
+      position: fixed; pointer-events: none;
+      z-index: 9999; transform: translate(-50%,-50%);
+      mix-blend-mode: difference;
+    }
+    .cursor-ring {
+      width: 36px; height: 36px; border-radius: 50%;
+      border: 1.5px solid rgba(57,255,110,.45);
+      position: fixed; pointer-events: none;
+      z-index: 9998; transform: translate(-50%,-50%);
+      transition: width .2s, height .2s;
+    }
+
+    /* ─── RESPONSIVE ─────────────────────────────────── */
+    @media (max-width: 700px) {
+      header, .stats-bar, .dropdown-bar, .grid { padding-left: 20px; padding-right: 20px; }
+      header { padding-top: 40px; }
+      .accordion-menu { min-width: 100%; }
+    }
+
+    body { padding-top: 64px !important; }
+  </style>
+</head>
+<body>
+
+<div class="cursor" id="cursor"></div>
+<div class="cursor-ring" id="cursorRing"></div>
+
+<div class="site-nav">
+  <a href="experiences.html">💼 Expériences</a>
+  <a href="formation.html">🎓 Formation</a>
+  <a href="Identite.html">👤 Identité</a>
+</div>
+
+<div style="position:fixed;top:0;left:0;right:0;z-index:999;display:flex;justify-content:center;padding:14px 0;pointer-events:none;">
+  <a href="index.html" style="pointer-events:auto;display:inline-flex;align-items:center;gap:8px;font-family:'Syne',sans-serif;font-size:.82rem;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:#0e0f14;background:#39ff6e;border:none;border-radius:30px;padding:10px 24px;text-decoration:none;box-shadow:0 4px 20px rgba(57,255,110,.35);transition:background .2s,transform .2s,box-shadow .2s;" onmouseover="this.style.background='#4dff80';this.style.transform='translateY(-2px)';this.style.boxShadow='0 6px 24px rgba(57,255,110,.5)';" onmouseout="this.style.background='#39ff6e';this.style.transform='translateY(0)';this.style.boxShadow='0 4px 20px rgba(57,255,110,.35)';">
+    <span>←</span> Accueil
+  </a>
+</div>
+
+<header>
+  <div class="tag">Portfolio · Projets</div>
+  <h1>
+    <span class="white">Mes </span><span class="gold">Projets</span><br>
+    <span class="white">professionnels</span>
+  </h1>
+  <p>Missions réalisées en entreprise dans le cadre de mon BTS SIO — réseau, systèmes, sécurité et développement web.</p>
+</header>
+
+<hr class="divider" />
+
+<div class="stats-bar">
+  <div class="stat"><span class="num">10</span><span class="lbl">Missions</span></div>
+  <div class="stat"><span class="num">8</span><span class="lbl">Mois</span></div>
+  <div class="stat"><span class="num">25+</span><span class="lbl">Livrables</span></div>
+  <div class="stat"><span class="num">2</span><span class="lbl">Options</span></div>
+</div>
+
+<hr class="divider" />
+
+<!-- ── ACCORDION FILTER ── -->
+<div class="dropdown-bar">
+  <span class="dropdown-label">Filtrer</span>
+
+  <div class="accordion-menu" id="accMenu">
+    <!-- Trigger -->
+    <button class="accordion-trigger" id="accTrigger" onclick="togglePanel()">
+      <span id="triggerIcon">📋</span>
+      <span id="triggerText">Toutes les missions</span>
+    </button>
+
+    <!-- Panel -->
+    <div class="accordion-panel" id="accPanel">
+
+      <!-- All -->
+      <div class="acc-all selected" id="opt-all" onclick="selectItem('all', '📋', 'Toutes les missions', this)">
+        📋 Toutes les missions
+      </div>
+
+      <!-- 1ère Année -->
+      <div class="acc-year">🎓 1ère Année</div>
+
+      <!-- Semestre 1 -->
+      <div class="acc-semester" id="sem1-toggle" onclick="toggleSemester('sem1')">
+        <span>📅 Semestre 1</span>
+        <span class="sem-arrow"></span>
+      </div>
+      <div class="acc-missions" id="sem1-missions">
+        <div class="acc-item" onclick="selectItem('card-1','📝','Recherches Métiers, CV, Mail Motivé &amp; Entretien', this)">
+          <span class="acc-icon">📝</span> Recherches Métiers, CV, Mail Motivé &amp; Entretien
+        </div>
+        <div class="acc-item" onclick="selectItem('card-2','📊','Appel d\'Offres — PC Fixes &amp; Portables', this)">
+          <span class="acc-icon">📊</span> Appel d'Offres — PC Fixes &amp; Portables
+        </div>
+        <div class="acc-item" onclick="selectItem('card-3','🪟','Mise en Place d\'un Réseau Poste à Poste', this)">
+          <span class="acc-icon">🪟</span> Mise en Place d'un Réseau Poste à Poste
+        </div>
+        <div class="acc-item" onclick="selectItem('card-7','🏢','Préparation Mise en Réseau d\'une Salle', this)">
+          <span class="acc-icon">🏢</span> Préparation Mise en Réseau d'une Salle
+        </div>
+        <div class="acc-item" onclick="selectItem('card-4','🌐','Conception et Réalisation d\'un Site Web', this)">
+          <span class="acc-icon">🌐</span> Conception et Réalisation d'un Site Web
+        </div>
+      </div>
+
+      <!-- Semestre 2 -->
+      <div class="acc-semester" id="sem2-toggle" onclick="toggleSemester('sem2')">
+        <span>📅 Semestre 2</span>
+        <span class="sem-arrow"></span>
+      </div>
+      <div class="acc-missions" id="sem2-missions">
+        <div class="acc-item" onclick="selectItem('card-8','📁','Création d\'un Portfolio', this)">
+          <span class="acc-icon">📁</span> Création d'un Portfolio
+        </div>
+        <div class="acc-item" onclick="selectItem('card-5','🔐','YUMI — Clé Multiboot &amp; Gestionnaires de Mots de Passe', this)">
+          <span class="acc-icon">🔐</span> YUMI — Clé Multiboot &amp; Gestionnaires de Mots de Passe
+        </div>
+        <div class="acc-item" onclick="selectItem('card-6','🔌','Refonte Réseau BROCKER\'INFO — Commutation / Routage', this)">
+          <span class="acc-icon">🔌</span> Refonte Réseau BROCKER'INFO — Commutation / Routage
+        </div>
+      </div>
+
+      <!-- 2ème Année -->
+      <div class="acc-year" style="border-top: 1px solid var(--border-solid);">🎓 2ème Année</div>
+
+      <!-- Semestre 3 -->
+      <div class="acc-semester" id="sem3-toggle" onclick="toggleSemester('sem3')">
+        <span>📅 Semestre 3</span>
+        <span class="sem-arrow"></span>
+      </div>
+      <div class="acc-missions" id="sem3-missions">
+        <div class="acc-item" onclick="selectItem('card-9','☁️','Travail Collaboratif — Solution Nextcloud &amp; LDAP', this)">
+          <span class="acc-icon">☁️</span> Travail Collaboratif — Solution Nextcloud &amp; LDAP
+        </div>
+        <div class="acc-item" onclick="selectItem('card-10','🖧','Administration Windows — AD, DHCP redondant &amp; DFS', this)">
+          <span class="acc-icon">🖧</span> Administration Windows — AD, DHCP redondant &amp; DFS
+        </div>
+      </div>
+
+      <!-- Semestre 4 -->
+      <div class="acc-semester" id="sem4-toggle" onclick="toggleSemester('sem4')">
+        <span>📅 Semestre 4</span>
+        <span class="sem-arrow"></span>
+      </div>
+      <div class="acc-missions" id="sem4-missions">
+        <div class="acc-item" style="color:var(--muted2);cursor:default;font-style:italic;">
+          <span class="acc-icon">⏳</span> Missions à venir…
+        </div>
+      </div>
+
+    </div><!-- /panel -->
+  </div><!-- /accordion-menu -->
+</div>
+
+<!-- ── GRID ── -->
+<div class="grid" id="grid">
+
+  <div class="card" data-cat="bureautique" data-id="card-1">
+    <div class="card-head">
+      <div class="icons-row">
+        <div class="tech-icon">📝</div>
+        <div class="tech-icon">🗣️</div>
+      </div>
+      <span class="period-badge">03/09/25 → 05/11/25</span>
+    </div>
+    <div>
+      <div class="cat-label" style="margin-bottom:6px;">Bureautique · Orientation</div>
+      <h2>Recherches Métiers, CV, Mail Motivé &amp; Entretien</h2>
+    </div>
+    <p class="context">Exploration des métiers de l'informatique, rédaction d'un CV professionnel et d'un mail motivé, conseils pour la lettre de motivation, préparation à l'entretien et création d'un diaporama de présentation individuel avec objectifs professionnels.</p>
+    <div class="resources">
+      <div class="res-group">
+        <label>Ressources fournies</label>
+        <div class="res-list">
+          <span class="chip">Liens métiers informatique</span>
+          <span class="chip">Conseils CV &amp; lettre</span>
+        </div>
+      </div>
+      <div class="res-group">
+        <label>Livrables produits</label>
+        <div class="res-list">
+          <span class="chip produced">CV professionnel</span>
+          <span class="chip produced">Mail motivé</span>
+          <span class="chip produced">Diaporama présentation</span>
+        </div>
+      </div>
+    </div>
+    <p class="avis">« Cette mission m'a permis de construire mon identité professionnelle et de me préparer concrètement à la recherche de stage. »</p>
+  </div>
+
+  <div class="card" data-cat="bureautique" data-id="card-2">
+    <div class="card-head">
+      <div class="icons-row">
+        <div class="tech-icon">📊</div>
+        <div class="tech-icon">📄</div>
+      </div>
+      <span class="period-badge">05/11/25 → 26/12/25</span>
+    </div>
+    <div>
+      <div class="cat-label" style="margin-bottom:6px;">Bureautique · Commerce · IT Partner</div>
+      <h2>Appel d'Offres — PC Fixes &amp; Portables</h2>
+    </div>
+    <p class="context">Réponse à un appel d'offres d'une organisation publique ou privée pour la fourniture de matériel informatique. Analyse des exigences, argumentaire de choix, documentations techniques des solutions et mail de réponse à l'appel d'offres avec IT Partner.</p>
+    <div class="resources">
+      <div class="res-group">
+        <label>Ressources fournies</label>
+        <div class="res-list">
+          <span class="chip">Descriptif AO</span>
+          <span class="chip">Présentation IT Partner</span>
+        </div>
+      </div>
+      <div class="res-group">
+        <label>Livrables produits</label>
+        <div class="res-list">
+          <span class="chip produced">Devis Excel</span>
+          <span class="chip produced">Lettre d'accompagnement</span>
+        </div>
+      </div>
+    </div>
+    <p class="avis">« Cette mission a été bénéfique pour la compréhension d'un appel d'offres et les exigences de l'entreprise — j'ai également progressé sur l'utilisation d'un tableur. »</p>
+  </div>
+
+  <div class="card" data-cat="réseau système" data-id="card-3">
+    <div class="card-head">
+      <div class="icons-row">
+        <div class="tech-icon">🪟</div>
+        <div class="tech-icon">🖥️</div>
+      </div>
+      <span class="period-badge">20/11/25 → 22/01/26</span>
+    </div>
+    <div>
+      <div class="cat-label" style="margin-bottom:6px;">Réseau · Système </div>
+      <h2>Mise en Place d'un Réseau Poste à Poste</h2>
+    </div>
+    <p class="context">Mise en place du service d'authentification dans la base SAM, gestion des fichiers et partages sous Windows 10. Création d'utilisateurs, groupes, permissions NTFS et autorisations de partage sur machines virtuelles VMware.</p>
+    <div class="resources">
+      <div class="res-group">
+        <label>Ressources fournies</label>
+        <div class="res-list">
+          <span class="chip">ISO Windows 10 Éducation</span>
+        </div>
+      </div>
+      <div class="res-group">
+        <label>Livrables produits</label>
+        <div class="res-list">
+          <span class="chip produced">2 VM configurées</span>
+          <span class="chip produced">Tuto Poste à Poste</span>
+        </div>
+      </div>
+    </div>
+    <p class="avis">« J'ai beaucoup appris sur la virtualisation, la base SAM, la création d'utilisateurs et les droits NTFS. »</p>
+  </div>
+
+  <div class="card" data-cat="réseau" data-id="card-7">
+    <div class="card-head">
+      <div class="icons-row">
+        <div class="tech-icon">🏢</div>
+        <div class="tech-icon">🔌</div>
+        <div class="tech-icon">📐</div>
+      </div>
+      <span class="period-badge">03/12/25 → 20/12/25</span>
+    </div>
+    <div>
+      <div class="cat-label" style="margin-bottom:6px;">Réseau · Infrastructure · IT Partner</div>
+      <h2>Préparation Mise en Réseau d'une Salle</h2>
+    </div>
+    <p class="context">Préparation complète de la mise en réseau d'une salle informatique dans le contexte IT Partner : réalisation des fichiers Visio de l'armoire 42U (pré et post câblage), descriptif des besoins, plan de la salle (pré et post câblage), devis et mail de réponse.</p>
+    <div class="resources">
+      <div class="res-group">
+        <label>Ressources fournies</label>
+        <div class="res-list">
+          <span class="chip">Descriptif mission IT Partner</span>
+          <span class="chip">Plan de salle existant</span>
+        </div>
+      </div>
+      <div class="res-group">
+        <label>Livrables produits</label>
+        <div class="res-list">
+          <span class="chip produced">Visio armoire 42U (pré câblage)</span>
+          <span class="chip produced">Visio armoire 42U (post câblage)</span>
+          <span class="chip produced">Descriptif des besoins</span>
+          <span class="chip produced">Plan de salle (pré câblage)</span>
+          <span class="chip produced">Plan de salle (post câblage)</span>
+          <span class="chip produced">Devis</span>
+          <span class="chip produced">Mail de réponse</span>
+        </div>
+      </div>
+    </div>
+    <p class="avis">« Cette mission m'a permis de comprendre la logique d'organisation d'une baie 42U et la démarche de préparation d'une infrastructure réseau réelle. »</p>
+  </div>
+
+  <div class="card" data-cat="web" data-id="card-4">
+    <div class="card-head">
+      <div class="icons-row">
+        <div class="tech-icon">🌐</div>
+      </div>
+      <span class="period-badge">05/11/25 → 17/12/25</span>
+    </div>
+    <div>
+      <div class="cat-label" style="margin-bottom:6px;">Développement Web</div>
+      <h2>Conception et Réalisation d'un Site Web</h2>
+    </div>
+    <p class="context">Développement d'un site vitrine : étude et choix de l'hébergeur, intégration HTML/CSS, hébergement et référencement du site web, et présentation orale du travail effectué.</p>
+    <div class="resources">
+      <div class="res-group">
+        <label>Ressources fournies</label>
+        <div class="res-list">
+          <span class="chip">Documentation HTML</span>
+        </div>
+      </div>
+      <div class="res-group">
+        <label>Livrables produits</label>
+        <div class="res-list">
+          <span class="chip produced">Site Internet</span>
+          <span class="chip produced">Tuto hébergement &amp; SEO</span>
+        </div>
+      </div>
+    </div>
+    <p class="avis">« Cette mission m'a permis de comprendre les bases du code HTML, l'hébergement et les fondamentaux du référencement. »</p>
+  </div>
+
+  <div class="card" data-cat="web" data-id="card-8">
+    <div class="card-head">
+      <div class="icons-row">
+        <div class="tech-icon">📁</div>
+        <div class="tech-icon">🌐</div>
+      </div>
+      <span class="period-badge">19/01/26 → 22/04/26</span>
+    </div>
+    <div>
+      <div class="cat-label" style="margin-bottom:6px;">Développement Web · Communication</div>
+      <h2>Création d'un Portfolio</h2>
+    </div>
+    <p class="context">Analyse des objectifs personnels et professionnels, organisation du portfolio sur le fond et la forme, avec synthèse de l'ensemble des missions réalisées au cours de l'année (mises à jour au fil du temps).</p>
+    <div class="resources">
+      <div class="res-group">
+        <label>Ressources fournies</label>
+        <div class="res-list">
+          <span class="chip">Descriptif mission</span>
+          <span class="chip">Photos</span>
+        </div>
+      </div>
+      <div class="res-group">
+        <label>Livrables produits</label>
+        <div class="res-list">
+          <span class="chip produced">Portfolio en ligne</span>
+          <span class="chip produced">Synthèse des missions</span>
+        </div>
+      </div>
+    </div>
+    <p class="avis">« Ce projet m'a permis de structurer et valoriser l'ensemble de mon parcours en BTS SIO, en développant aussi mes compétences en conception web. »</p>
+  </div>
+
+  <div class="card" data-cat="sécurité système" data-id="card-5">
+    <div class="card-head">
+      <div class="icons-row">
+        <div class="tech-icon">🔐</div>
+        <div class="tech-icon">🪟</div>
+        <div class="tech-icon">🐧</div>
+        <div class="tech-icon">💾</div>
+      </div>
+      <span class="period-badge">26/01/26 → 11/03/26</span>
+    </div>
+    <div>
+      <div class="cat-label" style="margin-bottom:6px;">Sécurité · Système · IT Partner</div>
+      <h2>YUMI — Clé Multiboot &amp; Gestionnaires de Mots de Passe</h2>
+    </div>
+    <p class="context">Descriptif des besoins, diaporama de présentation, tutoriel(s), comparatif de logiciels de gestionnaires de mots de passe, mails professionnels. Création d'une clé multiboot YUMI (Windows 11, Linux, Clonezilla, GParted, Memtest, antivirus).</p>
+    <div class="resources">
+      <div class="res-group">
+        <label>Ressources fournies</label>
+        <div class="res-list">
+          <span class="chip">Descriptif mission</span>
+          <span class="chip">ISO Win 11</span>
+          <span class="chip">ISO Linux</span>
+          <span class="chip">Clonezilla</span>
+          <span class="chip">GParted</span>
+          <span class="chip">Memtest</span>
+          <span class="chip">Antivirus</span>
+        </div>
+      </div>
+      <div class="res-group">
+        <label>Livrables produits</label>
+        <div class="res-list">
+          <span class="chip produced">Clé YUMI</span>
+          <span class="chip produced">Diaporama gestionnaires</span>
+          <span class="chip produced">Tutoriel Bitwarden</span>
+          <span class="chip produced">Tutoriel YUMI</span>
+          <span class="chip produced">Diagramme GANT</span>
+          <span class="chip produced">Mails professionnels</span>
+        </div>
+      </div>
+    </div>
+    <p class="avis">« J'ai compris le fonctionnement de YUMI et des outils de diagnostic, et découvert les gestionnaires de mots de passe du marché. »</p>
+  </div>
+
+  <div class="card" data-cat="réseau" data-id="card-6">
+    <div class="card-head">
+      <div class="icons-row">
+        <div class="tech-icon">🔌</div>
+        <div class="tech-icon">📡</div>
+      </div>
+      <span class="period-badge">17/03/26 → 20/04/26</span>
+    </div>
+    <div>
+      <div class="cat-label" style="margin-bottom:6px;">Réseau · Cisco · IT Partner</div>
+      <h2>Refonte Réseau BROCKER'INFO — Commutation / Routage</h2>
+    </div>
+    <p class="context">Refonte d'un réseau d'entreprise avec Cisco Packet Tracer : configuration de 2 commutateurs 2950 et 1 routeur 1841, mise en œuvre des protocoles VTP et TFTP, documentation complète.</p>
+    <div class="resources">
+      <div class="res-group">
+        <label>Ressources fournies</label>
+        <div class="res-list">
+          <span class="chip">Plan Visio réseau</span>
+          <span class="chip">Descriptif mission</span>
+        </div>
+      </div>
+      <div class="res-group">
+        <label>Livrables produits</label>
+        <div class="res-list">
+          <span class="chip produced">Fichier Packet Tracer</span>
+          <span class="chip produced">Config 2× 2950 + 1841</span>
+          <span class="chip produced">Tutoriel VTP &amp; TFTP</span>
+          <span class="chip produced">Diagramme GANTT</span>
+          <span class="chip produced">Mail de réponse</span>
+        </div>
+      </div>
+    </div>
+    <p class="avis">« Cette mission m'a permis de comprendre le routage, la commutation et de découvrir les protocoles TFTP et VTP en environnement simulé Cisco. »</p>
+  </div>
+
+  <div class="card" data-cat="système réseau" data-id="card-9">
+    <div class="card-head">
+      <div class="icons-row">
+        <div class="tech-icon">☁️</div>
+        <div class="tech-icon">🤝</div>
+        <div class="tech-icon">🐧</div>
+      </div>
+      <span class="period-badge">01/09/26 → 28/09/26</span>
+    </div>
+    <div>
+      <div class="cat-label" style="margin-bottom:6px;">Système · Travail collaboratif · HSH</div>
+      <h2>Travail Collaboratif — Solution Nextcloud &amp; LDAP</h2>
+    </div>
+    <p class="context">Recherche de solutions répondant au cahier des charges, comparatif des solutions et note de choix, mise en place de la solution Nextcloud, rédaction de tutoriels d'installation du serveur, de paramétrage des utilisateurs à partir de LDAP et d'utilisation.</p>
+    <div class="resources">
+      <div class="res-group">
+        <label>Ressources fournies</label>
+        <div class="res-list">
+          <span class="chip">Cahier des charges</span>
+          <span class="chip">Contexte HSH</span>
+        </div>
+      </div>
+      <div class="res-group">
+        <label>Livrables produits</label>
+        <div class="res-list">
+          <span class="chip produced">Comparatif des solutions</span>
+          <span class="chip produced">Note de choix</span>
+          <span class="chip produced">Serveur Nextcloud</span>
+          <span class="chip produced">Tuto installation serveur</span>
+          <span class="chip produced">Tuto utilisateurs LDAP</span>
+          <span class="chip produced">Tutoriels d'utilisation</span>
+        </div>
+      </div>
+    </div>
+    <p class="avis">« Cette mission m'a permis de comparer des solutions de travail collaboratif, de déployer Nextcloud et de comprendre l'intégration des utilisateurs via LDAP. »</p>
+  </div>
+
+  <div class="card" data-cat="système réseau" data-id="card-10">
+    <div class="card-head">
+      <div class="icons-row">
+        <div class="tech-icon">🖧</div>
+        <div class="tech-icon">🪟</div>
+        <div class="tech-icon">🗄️</div>
+      </div>
+      <span class="period-badge">08/09/26 → 25/09/26</span>
+    </div>
+    <div>
+      <div class="cat-label" style="margin-bottom:6px;">Système · Réseau · HSH</div>
+      <h2>Administration Windows — AD, DHCP redondant &amp; DFS</h2>
+    </div>
+    <p class="context">Mise en place des services d'authentification de domaine, de gestion de fichiers et du service DHCP redondant (2 serveurs AD, DNS, DHCP et DFS), avec tests sur deux clients Windows 11.</p>
+    <div class="resources">
+      <div class="res-group">
+        <label>Ressources fournies</label>
+        <div class="res-list">
+          <span class="chip">Descriptif mission</span>
+          <span class="chip">Contexte HSH</span>
+        </div>
+      </div>
+      <div class="res-group">
+        <label>Livrables produits</label>
+        <div class="res-list">
+          <span class="chip produced">2 serveurs AD</span>
+          <span class="chip produced">DNS</span>
+          <span class="chip produced">DHCP redondant</span>
+          <span class="chip produced">DFS</span>
+          <span class="chip produced">Tests 2 clients Windows 11</span>
+        </div>
+      </div>
+    </div>
+    <p class="avis">« Cette mission m'a permis de mettre en œuvre un domaine Active Directory avec redondance des services DHCP et de gestion de fichiers via DFS. »</p>
+  </div>
+
+</div>
+
+<script>
+  // ── Panel open/close ──
+  function togglePanel() {
+    const trigger = document.getElementById('accTrigger');
+    const panel   = document.getElementById('accPanel');
+    trigger.classList.toggle('open');
+    panel.classList.toggle('open');
+  }
+
+  // Close panel when clicking outside
+  document.addEventListener('click', function(e) {
+    const menu = document.getElementById('accMenu');
+    if (!menu.contains(e.target)) {
+      document.getElementById('accTrigger').classList.remove('open');
+      document.getElementById('accPanel').classList.remove('open');
+    }
+  });
+
+  // ── Semester toggle ──
+  function toggleSemester(id) {
+    const toggle   = document.getElementById(id + '-toggle');
+    const missions = document.getElementById(id + '-missions');
+    toggle.classList.toggle('sem-open');
+    missions.classList.toggle('sem-open');
+  }
+
+  // ── Select item ──
+  function selectItem(cardId, icon, label, el) {
+    // Update trigger label
+    document.getElementById('triggerIcon').textContent = icon;
+    document.getElementById('triggerText').innerHTML = label;
+
+    // Clear all selected states
+    document.querySelectorAll('.acc-all, .acc-item').forEach(i => i.classList.remove('selected'));
+    el.classList.add('selected');
+
+    // Filter cards
+    document.querySelectorAll('.card').forEach(card => {
+      const show = cardId === 'all' || card.dataset.id === cardId;
+      if (show) {
+        card.style.display = '';
+        card.style.animation = 'none';
+        void card.offsetHeight;
+        card.style.animation = '';
+      } else {
+        card.style.display = 'none';
+      }
+    });
+
+    // Close panel
+    document.getElementById('accTrigger').classList.remove('open');
+    document.getElementById('accPanel').classList.remove('open');
+  }
+
+  // ── Custom cursor ──
+  const cursor = document.getElementById('cursor');
+  const ring   = document.getElementById('cursorRing');
+  let rx = 0, ry = 0, mx = 0, my = 0;
+  document.addEventListener('mousemove', e => { mx = e.clientX; my = e.clientY; });
+  (function animCursor() {
+    rx += (mx - rx) * .15;
+    ry += (my - ry) * .15;
+    cursor.style.left = mx + 'px';
+    cursor.style.top  = my + 'px';
+    ring.style.left   = rx + 'px';
+    ring.style.top    = ry + 'px';
+    requestAnimationFrame(animCursor);
+  })();
+</script>
+</body>
+</html>
