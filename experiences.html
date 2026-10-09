@@ -94,6 +94,71 @@
     }
     h1 span { color: var(--accent); }
 
+
+    .status-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      margin-top: 22px;
+      font-size: 12px;
+      font-weight: 600;
+      letter-spacing: .14em;
+      text-transform: uppercase;
+      color: var(--accent);
+      background: rgba(57,255,110,.08);
+      border: 1px solid rgba(57,255,110,.25);
+      padding: 8px 16px;
+      border-radius: 100px;
+      opacity: 0;
+      animation: fadeUp .7s .3s forwards;
+    }
+    .status-badge::before {
+      content: '';
+      width: 8px; height: 8px;
+      border-radius: 50%;
+      background: var(--accent);
+      box-shadow: 0 0 0 0 rgba(57,255,110,.6);
+      animation: statusPulse 2s infinite;
+    }
+    @keyframes statusPulse {
+      0%   { box-shadow: 0 0 0 0 rgba(57,255,110,.55); }
+      70%  { box-shadow: 0 0 0 10px rgba(57,255,110,0); }
+      100% { box-shadow: 0 0 0 0 rgba(57,255,110,0); }
+    }
+
+
+    a.status-badge { text-decoration: none; cursor: pointer; transition: background .25s, transform .25s, box-shadow .25s; }
+    a.status-badge:hover {
+      background: rgba(57,255,110,.18);
+      transform: translateY(-2px);
+      box-shadow: 0 6px 24px rgba(57,255,110,.18);
+    }
+    .status-arrow { display: inline-block; transition: transform .25s; }
+    a.status-badge:hover .status-arrow { transform: translateY(3px); }
+    .exp-card.highlight .card-body { animation: cardFlash 1.6s ease; }
+    @keyframes cardFlash {
+      0%, 100% { box-shadow: 0 0 0 0 rgba(57,255,110,0); }
+      30%      { box-shadow: 0 0 0 2px rgba(57,255,110,.7), 0 0 32px rgba(57,255,110,.25); }
+    }
+
+    .org-info {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 14px 40px;
+      margin-top: 18px;
+      padding-top: 16px;
+      border-top: 1px solid var(--border);
+    }
+    .org-info dt {
+      font-size: 10px;
+      font-weight: 600;
+      letter-spacing: .14em;
+      text-transform: uppercase;
+      color: var(--accent2);
+      margin-bottom: 4px;
+    }
+    .org-info dd { font-size: .9rem; font-weight: 500; }
+
     .header-sub {
       margin-top: 16px;
       font-size: 1rem;
@@ -476,6 +541,7 @@
 <header>
   <div class="header-tag">Portfolio · Parcours</div>
   <h1>Expériences<br/><span>Professionnelles</span></h1>
+  <a href="#alternance-dgfip" class="status-badge" id="goAlternance">Alternance en cours <span class="status-arrow">↓</span></a>
   <p class="header-sub">Un aperçu de mon parcours, mes missions et les compétences acquises au fil des expériences professionnelles.</p>
 </header>
 
@@ -635,7 +701,7 @@
               onerror="this.parentElement.classList.add('placeholder');this.parentElement.innerHTML='SZ'"/>
           </div>
           <div class="card-meta">
-            <div class="card-period">Juin 2025 – Août 2025</div>
+            <div class="card-period">Juin 2026 – Août 2026</div>
             <div class="card-title">Intérimaire polyvalent</div>
             <div class="card-company">SUEZ</div>
           </div>
@@ -675,7 +741,7 @@
   <div class="timeline">
 
     <!-- DGFIP ALTERNANCE -->
-    <div class="exp-card" data-category="informatique">
+    <div class="exp-card" data-category="informatique" id="alternance-dgfip">
       <div class="dot-col"><div class="dot"></div></div>
       <div class="card-body">
         <div class="card-top">
@@ -694,6 +760,16 @@
           <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s-8-4.5-8-11.8A8 8 0 0 1 12 2a8 8 0 0 1 8 8.2c0 7.3-8 11.8-8 11.8z"/><circle cx="12" cy="10" r="3"/></svg>
           Moulins
         </div>
+        <dl class="org-info">
+          <div>
+            <dt>Lieu</dt>
+            <dd>DDFIP Moulins — 9 avenue Victor Hugo, 03000 Moulins</dd>
+          </div>
+          <div>
+            <dt>Secteur</dt>
+            <dd>Fonction publique</dd>
+          </div>
+        </dl>
         <button class="missions-toggle" onclick="toggleMissions(this)">
           <span class="arrow">▶</span> Voir mes missions
         </button>
@@ -775,6 +851,20 @@
         }
       });
     });
+  });
+
+  document.getElementById('goAlternance').addEventListener('click', e => {
+    e.preventDefault();
+    const target = document.getElementById('alternance-dgfip');
+    if (target.classList.contains('hidden')) {
+      document.querySelector('.filter-btn[data-filter="all"]').click();
+    }
+    target.classList.add('visible');
+    target.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    target.classList.remove('highlight');
+    void target.offsetWidth;
+    target.classList.add('highlight');
+    setTimeout(() => target.classList.remove('highlight'), 1700);
   });
 
   function toggleMissions(btn) {
