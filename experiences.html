@@ -522,6 +522,19 @@
       transform: translateY(-2px);
     }
   </style>
+<style>
+    .fiches-toggle { margin-top: 14px; }
+    .fiches { margin-top: 14px; display: none; flex-direction: column; gap: 14px; animation: fadeUp .3s forwards; }
+    .fiches.open { display: flex; }
+    .fiche { background: rgba(255,255,255,.025); border: 1px solid var(--border); border-radius: 12px; padding: 18px 20px; }
+    .fiche h4 { font-family: 'Syne', sans-serif; font-size: .95rem; font-weight: 700; margin-bottom: 4px; }
+    .fiche-meta { font-size: .72rem; font-weight: 600; letter-spacing: .08em; text-transform: uppercase; color: var(--accent); margin-bottom: 4px; }
+    .fiche-lbl { font-size: 10px; font-weight: 600; letter-spacing: .14em; text-transform: uppercase; color: var(--accent2); margin: 14px 0 6px; }
+    .fiche p, .fiche li { font-size: .86rem; color: #a8afc0; line-height: 1.65; }
+    .fiche ol { padding-left: 20px; display: flex; flex-direction: column; gap: 4px; }
+    .fiche li::marker { color: var(--accent); font-weight: 600; }
+    .fiche .avis { border-left: 2px solid var(--accent); padding-left: 12px; font-style: italic; }
+  </style>
 </head>
 <body>
 <div style="position:fixed;top:0;left:0;right:0;z-index:999;display:flex;justify-content:center;padding:14px 0;pointer-events:none;">
@@ -682,6 +695,73 @@
           <li>Mise à jour du parc informatique</li>
           <li>Suivi des sauvegardes</li>
         </ul>
+
+        <!-- À PERSONNALISER : objectifs, étapes et retours personnels rédigés d'après la liste des missions ; corrige-les avec ce que tu as réellement fait -->
+        <button class="missions-toggle fiches-toggle" onclick="toggleMissions(this)">
+          <span class="arrow">▶</span> Voir les fiches missions détaillées
+        </button>
+        <div class="fiches">
+          <div class="fiche">
+            <h4>Préparation des postes de travail pour les agents</h4>
+            <div class="fiche-meta">Mai – Juin 2026 · Cusset &amp; Moulins</div>
+            <div class="fiche-lbl">Objectif</div>
+            <p>Mettre à disposition des agents de la DGFIP des postes prêts à l'emploi, conformes aux besoins de leur service.</p>
+            <div class="fiche-lbl">Étapes suivies</div>
+            <ol>
+              <li>Identifier le poste à préparer et l'agent concerné.</li>
+              <li>Installer et configurer le système et les logiciels nécessaires.</li>
+              <li>Vérifier le bon fonctionnement du poste (session, réseau, applications).</li>
+              <li>Remettre le poste à l'agent.</li>
+            </ol>
+            <div class="fiche-lbl">Retour personnel</div>
+            <p class="avis">« Cette mission m'a permis de découvrir la préparation d'un poste en environnement professionnel et la rigueur que cela demande. »</p>
+          </div>
+          <div class="fiche">
+            <h4>Dépannage du matériel informatique</h4>
+            <div class="fiche-meta">Mai – Juin 2026 · Cusset &amp; Moulins</div>
+            <div class="fiche-lbl">Objectif</div>
+            <p>Rétablir rapidement l'utilisation d'un poste ou d'un périphérique en panne pour limiter la gêne des agents.</p>
+            <div class="fiche-lbl">Étapes suivies</div>
+            <ol>
+              <li>Recueillir le signalement de l'agent.</li>
+              <li>Diagnostiquer l'origine de la panne (matériel ou logiciel).</li>
+              <li>Réparer ou remplacer l'élément défaillant.</li>
+              <li>Vérifier avec l'agent que le problème est résolu.</li>
+            </ol>
+            <div class="fiche-lbl">Retour personnel</div>
+            <p class="avis">« J'ai progressé dans la méthode de diagnostic et dans le contact avec les utilisateurs. »</p>
+          </div>
+          <div class="fiche">
+            <h4>Mise à jour du parc informatique</h4>
+            <div class="fiche-meta">Mai – Juin 2026 · Cusset &amp; Moulins</div>
+            <div class="fiche-lbl">Objectif</div>
+            <p>Maintenir le parc informatique à jour et cohérent (systèmes, logiciels, suivi du matériel).</p>
+            <div class="fiche-lbl">Étapes suivies</div>
+            <ol>
+              <li>Recenser les postes concernés.</li>
+              <li>Appliquer les mises à jour nécessaires.</li>
+              <li>Contrôler que les mises à jour se sont bien déroulées.</li>
+              <li>Mettre à jour le suivi du parc.</li>
+            </ol>
+            <div class="fiche-lbl">Retour personnel</div>
+            <p class="avis">« Cette mission m'a fait comprendre l'importance de la maintenance régulière d'un parc pour la sécurité et la fiabilité. »</p>
+          </div>
+          <div class="fiche">
+            <h4>Suivi des sauvegardes</h4>
+            <div class="fiche-meta">Mai – Juin 2026 · Cusset &amp; Moulins</div>
+            <div class="fiche-lbl">Objectif</div>
+            <p>S'assurer que les données de l'organisation sont sauvegardées correctement et régulièrement.</p>
+            <div class="fiche-lbl">Étapes suivies</div>
+            <ol>
+              <li>Consulter l'état des sauvegardes.</li>
+              <li>Repérer les échecs ou anomalies éventuels.</li>
+              <li>Relancer la sauvegarde ou signaler le problème.</li>
+              <li>Consigner le résultat du suivi.</li>
+            </ol>
+            <div class="fiche-lbl">Retour personnel</div>
+            <p class="avis">« J'ai pris conscience de l'enjeu des sauvegardes dans une administration et de la vigilance qu'elles demandent. »</p>
+          </div>
+        </div>
         <div class="card-tags">
           <span class="tag">Support IT</span>
           <span class="tag">Maintenance</span>
