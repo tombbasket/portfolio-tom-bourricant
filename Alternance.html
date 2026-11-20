@@ -564,7 +564,7 @@
         <img src="dgfip.png" alt="DGFIP" onerror="this.parentElement.classList.add('placeholder');this.parentElement.innerHTML='DGFIP'"/>
       </div>
       <div class="card-meta">
-        <div class="card-period">Septembre 2026 – Août 2027</div>
+        <div class="card-period">12 Octobre – 30 Octobre 2026</div>
         <div class="card-title">Apprenti Informaticien</div>
         <div class="card-company">DDFIP Moulins — DGFIP</div>
       </div>
@@ -593,80 +593,31 @@
     <div class="card-top">
       <div class="card-meta">
         <div class="card-period">12 Octobre – 30 Octobre 2026</div>
-        <div class="card-title">Sauvegardes</div>
+        <div class="card-title">Missions réalisées</div>
         <div class="card-company">DDFIP Moulins — Service informatique</div>
       </div>
       <span class="badge badge-green">Terminé</span>
     </div>
-    <p class="company-desc">Sauvegardes quotidiennes ou hebdomadaires à Yzeure ou Moulins, avec la solution Bacula.</p>
+
+    <button class="missions-toggle" onclick="toggleMissions(this)">
+      <span class="arrow">▶</span> Voir les 5 missions
+    </button>
+
+    <ul class="missions-list">
+      <li>Sauvegardes quotidiennes ou hebdomadaires à Yzeure ou Moulins (utilisation de la solution Bacula).</li>
+      <li>Actualisation du parc informatique (écrans, stations d'accueil, PC portables et téléphones) sur le logiciel Sigma et sur OCS Inventory.</li>
+      <li>Affectation et traitement des différentes demandes (tickets) de différents services sur Oméga assist.</li>
+      <li>Création d'utilisateurs avec mise en place de leurs lecteurs réseaux et de leurs habilitations (utilisation de BAOS et MADHRAS).</li>
+      <li>Mise en place d'un PC avec le système d'exploitation à l'aide d'une clé bootable de la DGFiP et d'un tutoriel (configuration du BIOS, étiquetage, OCS Inventory avec mise à jour des logiciels nécessaires).</li>
+    </ul>
+
     <div class="card-tags">
       <span class="tag">Bacula</span>
-      <span class="tag">Sauvegarde</span>
-    </div>
-  </div>
-
-  <div class="card-body block">
-    <div class="card-top">
-      <div class="card-meta">
-        <div class="card-period">12 Octobre – 30 Octobre 2026</div>
-        <div class="card-title">Gestion du parc informatique</div>
-        <div class="card-company">DDFIP Moulins — Service informatique</div>
-      </div>
-      <span class="badge badge-green">Terminé</span>
-    </div>
-    <p class="company-desc">Actualisation du parc (écrans, stations d'accueil, PC portables et téléphones) sur le logiciel Sigma et sur OCS Inventory.</p>
-    <div class="card-tags">
       <span class="tag">Sigma</span>
       <span class="tag">OCS Inventory</span>
-    </div>
-  </div>
-
-  <div class="card-body block">
-    <div class="card-top">
-      <div class="card-meta">
-        <div class="card-period">12 Octobre – 30 Octobre 2026</div>
-        <div class="card-title">Traitement des demandes</div>
-        <div class="card-company">DDFIP Moulins — Service informatique</div>
-      </div>
-      <span class="badge badge-green">Terminé</span>
-    </div>
-    <p class="company-desc">Affectation et traitement des demandes (tickets) des différents services sur Oméga assist.</p>
-    <div class="card-tags">
-      <span class="tag">Support</span>
       <span class="tag">Oméga assist</span>
-    </div>
-  </div>
-
-  <div class="card-body block">
-    <div class="card-top">
-      <div class="card-meta">
-        <div class="card-period">12 Octobre – 30 Octobre 2026</div>
-        <div class="card-title">Création d'utilisateurs</div>
-        <div class="card-company">DDFIP Moulins — Service informatique</div>
-      </div>
-      <span class="badge badge-green">Terminé</span>
-    </div>
-    <p class="company-desc">Création d'utilisateurs avec mise en place de leurs lecteurs réseaux et de leurs habilitations, à l'aide de BAOS et MADHRAS.</p>
-    <div class="card-tags">
-      <span class="tag">Gestion utilisateurs</span>
       <span class="tag">BAOS</span>
       <span class="tag">MADHRAS</span>
-    </div>
-  </div>
-
-  <div class="card-body block">
-    <div class="card-top">
-      <div class="card-meta">
-        <div class="card-period">12 Octobre – 30 Octobre 2026</div>
-        <div class="card-title">Déploiement de postes</div>
-        <div class="card-company">DDFIP Moulins — Service informatique</div>
-      </div>
-      <span class="badge badge-green">Terminé</span>
-    </div>
-    <p class="company-desc">Mise en place d'un PC avec le système d'exploitation à l'aide d'une clé bootable de la DGFiP et d'un tutoriel : configuration du BIOS, étiquetage, OCS Inventory et mise à jour des logiciels nécessaires.</p>
-    <div class="card-tags">
-      <span class="tag">Déploiement</span>
-      <span class="tag">OCS Inventory</span>
     </div>
   </div>
 </div>
@@ -687,6 +638,15 @@
     ring.style.top    = ry + 'px';
     requestAnimationFrame(animCursor);
   })();
+
+  function toggleMissions(btn) {
+    const list = btn.nextElementSibling;
+    const isOpen = list.classList.toggle('open');
+    btn.classList.toggle('open', isOpen);
+    btn.innerHTML = isOpen
+      ? '<span class="arrow">▶</span> Masquer les missions'
+      : '<span class="arrow">▶</span> Voir les 5 missions';
+  }
 </script>
 
 </body>
